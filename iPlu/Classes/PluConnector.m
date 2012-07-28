@@ -8,6 +8,7 @@
 
 #import "PluConnector.h"
 #import "OAHMAC_SHA1SignatureProvider.h"
+#import "SBJsonParser.h"
 
 #define APPKEY @"tG0lk2XlB63h"
 #define APPSECRET @"Zgtcy0XOCSvPUcAHvF9fDfLfT7yOn48k"
@@ -136,6 +137,7 @@ static NSString *urlEncode(id object)
 @implementation PluConnector
 @synthesize tokenKey = m_tokenKey;
 @synthesize tokenSecret = m_tokenSecret;
+@synthesize delegate = m_delegate;
 
 static PluConnector *m_instance;
 
@@ -166,13 +168,17 @@ static PluConnector *m_instance;
 	baseString = [@"GET&" stringByAppendingFormat:@"%@&%@",urlEncode(apiUrl),normEncodedParameters];
 	
 	NSString *secret = [APPSECRET stringByAppendingString:@"&"];
-	NSString *urlString = [urlEncode(apiUrl) stringByAppendingFormat:@"?%@&oauth_signature=%@", [parameters urlEncoded], urlEncode([OAHMAC_SHA1SignatureProvider signClearText:baseString withSecret:secret])];
+	NSString *urlString = [apiUrl stringByAppendingFormat:@"?%@&oauth_signature=%@", [parameters urlEncoded], urlEncode([OAHMAC_SHA1SignatureProvider signClearText:baseString withSecret:secret])];
 	NSLog(@"\nsign %@ \nby secret %@", baseString, secret);
 	NSLog(@"send: %@",urlString);
 	
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
 	
+	m_delegate = delegate;
+	
 	PluConnection *connection = [[PluConnection alloc] initWithRequest:request command:command delegate:self];
+	
+	//NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
 	if (connection == nil) {
 		NSLog(@"nil connection");
@@ -184,7 +190,7 @@ static PluConnector *m_instance;
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
 	((PluConnection *)connection).response  = [response retain];
-	NSLog(@"receive: %@",response);
+	NSLog(@"receive: %@",response.MIMEType);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -195,8 +201,32 @@ static PluConnector *m_instance;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSData *data = ((PluConnection *)connection).data;
-	NSURLResponse *response = ((PluConnection *)connection).response;
 	
+	NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+	
+	NSLog(@"receive %@", dataString);
+	[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:dataString];
+	
+	
+	NSMutableDictionary *object = [NSMutableDictionary new];
+	NSArray *parameters = [dataString componentsSeparatedByString:@"&"];
+	for (NSString *i in parameters) {
+		NSArray *keyValue = [i componentsSeparatedByString:@"="];
+		[object setValue:[keyValue objectAtIndex:1] forKey:[keyValue objectAtIndex:0]];
+	}
+	[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:object];
+	
+/*	if ([((PluConnection *)connection).response.MIMEType isEqualToString:@"text/html"]) {
+		[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:dataString];
+	} else {
+		SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+		
+		NSDictionary *jsonObject = [jsonParser objectWithData:data];
+		
+		[jsonParser release], jsonParser = nil;
+		
+		
+	}*/
 }
 
 + (NSDate *)dateWithPluDate:(NSString *)pluDate

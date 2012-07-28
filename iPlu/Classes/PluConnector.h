@@ -19,7 +19,7 @@
 
 @protocol PluConnectorDelegate <NSObject>
 
-- (void)pluCommand:(PluCommand *)command finishedWithResult:(NSObject *)result;
+- (void)pluCommand:(PluCommand *)command finishedWithResult:(NSDictionary *)result;
 - (void)pluCommandFailed:(PluCommand *)command;
 
 @end
@@ -27,10 +27,12 @@
 @interface PluConnector : NSObject <NSURLConnectionDataDelegate> {
 	NSString *m_tokenKey;
 	NSString *m_tokenSecret;
+	id<PluConnectorDelegate> m_delegate;
 }
 
 @property (nonatomic, retain) NSString *tokenKey;
 @property (nonatomic, retain) NSString *tokenSecret;
+@property (nonatomic, assign) id<PluConnectorDelegate> delegate;
 
 + (PluConnector *)instance;
 + (NSDate *)dateWithPluDate:(NSString *)pluDate;

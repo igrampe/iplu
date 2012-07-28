@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "OAuthLoginViewController.h"
 
 @interface MainViewController ()
 
@@ -26,14 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	NSMutableDictionary *dict = [NSMutableDictionary new];
-	[dict setValue:@"21796946" forKey:@"oauth_nonce"];
-	[dict setValue:@"1343476614" forKey:@"oauth_timestamp"];
-	[dict setValue:@"tG0lk2XlB63h" forKey:@"oauth_consumer_key"];
-	[dict setValue:@"HMAC-SHA1" forKey:@"oauth_signature_method"];
-	[dict setValue:@"1.0" forKey:@"oauth_version"];
-	PluCommand *command = [[PluCommand alloc] initWithString:@"OAuth/request_token"];
-	[[PluConnector instance] pluCommand:command withParameters:dict delegate:self];
+	OAuthLoginViewController *m_oAuthViewController = [[OAuthLoginViewController alloc] initWithNibName:@"OAuthLoginViewController" bundle:nil];
+	self.view = m_oAuthViewController.view;
 }
 
 - (void)viewDidUnload
