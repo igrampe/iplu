@@ -1,0 +1,264 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5385187715C40CBA00E0CEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5385187615C40CBA00E0CEDF /* UIKit.framework */; };
+		5385187915C40CBA00E0CEDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5385187815C40CBA00E0CEDF /* Foundation.framework */; };
+		5385187B15C40CBA00E0CEDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5385187A15C40CBA00E0CEDF /* CoreGraphics.framework */; };
+		5385188115C40CBA00E0CEDF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5385187F15C40CBA00E0CEDF /* InfoPlist.strings */; };
+		5385188315C40CBA00E0CEDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385188215C40CBA00E0CEDF /* main.m */; };
+		5385188715C40CBA00E0CEDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385188615C40CBA00E0CEDF /* AppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5385187215C40CBA00E0CEDF /* iPlu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPlu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5385187615C40CBA00E0CEDF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5385187815C40CBA00E0CEDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5385187A15C40CBA00E0CEDF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5385187E15C40CBA00E0CEDF /* iPlu-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iPlu-Info.plist"; sourceTree = "<group>"; };
+		5385188015C40CBA00E0CEDF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5385188215C40CBA00E0CEDF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5385188415C40CBA00E0CEDF /* iPlu-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iPlu-Prefix.pch"; sourceTree = "<group>"; };
+		5385188515C40CBA00E0CEDF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5385188615C40CBA00E0CEDF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5385186F15C40CBA00E0CEDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5385187715C40CBA00E0CEDF /* UIKit.framework in Frameworks */,
+				5385187915C40CBA00E0CEDF /* Foundation.framework in Frameworks */,
+				5385187B15C40CBA00E0CEDF /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5385186715C40CBA00E0CEDF = {
+			isa = PBXGroup;
+			children = (
+				5385187C15C40CBA00E0CEDF /* iPlu */,
+				5385187515C40CBA00E0CEDF /* Frameworks */,
+				5385187315C40CBA00E0CEDF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5385187315C40CBA00E0CEDF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5385187215C40CBA00E0CEDF /* iPlu.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5385187515C40CBA00E0CEDF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5385187615C40CBA00E0CEDF /* UIKit.framework */,
+				5385187815C40CBA00E0CEDF /* Foundation.framework */,
+				5385187A15C40CBA00E0CEDF /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5385187C15C40CBA00E0CEDF /* iPlu */ = {
+			isa = PBXGroup;
+			children = (
+				5385188515C40CBA00E0CEDF /* AppDelegate.h */,
+				5385188615C40CBA00E0CEDF /* AppDelegate.m */,
+				5385187D15C40CBA00E0CEDF /* Supporting Files */,
+			);
+			path = iPlu;
+			sourceTree = "<group>";
+		};
+		5385187D15C40CBA00E0CEDF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5385187E15C40CBA00E0CEDF /* iPlu-Info.plist */,
+				5385187F15C40CBA00E0CEDF /* InfoPlist.strings */,
+				5385188215C40CBA00E0CEDF /* main.m */,
+				5385188415C40CBA00E0CEDF /* iPlu-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5385187115C40CBA00E0CEDF /* iPlu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5385188A15C40CBA00E0CEDF /* Build configuration list for PBXNativeTarget "iPlu" */;
+			buildPhases = (
+				5385186E15C40CBA00E0CEDF /* Sources */,
+				5385186F15C40CBA00E0CEDF /* Frameworks */,
+				5385187015C40CBA00E0CEDF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iPlu;
+			productName = iPlu;
+			productReference = 5385187215C40CBA00E0CEDF /* iPlu.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5385186915C40CBA00E0CEDF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Semen Belokovsky";
+			};
+			buildConfigurationList = 5385186C15C40CBA00E0CEDF /* Build configuration list for PBXProject "iPlu" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5385186715C40CBA00E0CEDF;
+			productRefGroup = 5385187315C40CBA00E0CEDF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5385187115C40CBA00E0CEDF /* iPlu */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5385187015C40CBA00E0CEDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5385188115C40CBA00E0CEDF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5385186E15C40CBA00E0CEDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5385188315C40CBA00E0CEDF /* main.m in Sources */,
+				5385188715C40CBA00E0CEDF /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5385187F15C40CBA00E0CEDF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5385188015C40CBA00E0CEDF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5385188815C40CBA00E0CEDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5385188915C40CBA00E0CEDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5385188B15C40CBA00E0CEDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iPlu/iPlu-Prefix.pch";
+				INFOPLIST_FILE = "iPlu/iPlu-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		5385188C15C40CBA00E0CEDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iPlu/iPlu-Prefix.pch";
+				INFOPLIST_FILE = "iPlu/iPlu-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5385186C15C40CBA00E0CEDF /* Build configuration list for PBXProject "iPlu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5385188815C40CBA00E0CEDF /* Debug */,
+				5385188915C40CBA00E0CEDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5385188A15C40CBA00E0CEDF /* Build configuration list for PBXNativeTarget "iPlu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5385188B15C40CBA00E0CEDF /* Debug */,
+				5385188C15C40CBA00E0CEDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5385186915C40CBA00E0CEDF /* Project object */;
+}
