@@ -12,7 +12,16 @@
 		5385187B15C40CBA00E0CEDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5385187A15C40CBA00E0CEDF /* CoreGraphics.framework */; };
 		5385188115C40CBA00E0CEDF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5385187F15C40CBA00E0CEDF /* InfoPlist.strings */; };
 		5385188315C40CBA00E0CEDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385188215C40CBA00E0CEDF /* main.m */; };
-		5385188715C40CBA00E0CEDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385188615C40CBA00E0CEDF /* AppDelegate.m */; };
+		538518B215C40D9600E0CEDF /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 538518B115C40D9600E0CEDF /* Base64Transcoder.c */; };
+		538518B615C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518B515C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m */; };
+		538518B915C40E1800E0CEDF /* AppSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518B815C40E1800E0CEDF /* AppSettingsHelper.m */; };
+		538518BC15C40E2300E0CEDF /* OAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518BB15C40E2300E0CEDF /* OAuth.m */; };
+		538518BF15C40E2D00E0CEDF /* PluConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518BE15C40E2D00E0CEDF /* PluConnector.m */; };
+		538518C215C40E3B00E0CEDF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518C115C40E3B00E0CEDF /* MainViewController.m */; };
+		538518C415C40E4000E0CEDF /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 538518C315C40E4000E0CEDF /* MainViewController.xib */; };
+		538518C715C40E4900E0CEDF /* OAuthLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518C615C40E4900E0CEDF /* OAuthLoginViewController.m */; };
+		538518C915C40E4E00E0CEDF /* OAuthLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 538518C815C40E4E00E0CEDF /* OAuthLoginViewController.xib */; };
+		538518CC15C40E5F00E0CEDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518CB15C40E5F00E0CEDF /* AppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +33,24 @@
 		5385188015C40CBA00E0CEDF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5385188215C40CBA00E0CEDF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5385188415C40CBA00E0CEDF /* iPlu-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iPlu-Prefix.pch"; sourceTree = "<group>"; };
-		5385188515C40CBA00E0CEDF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		5385188615C40CBA00E0CEDF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		538518B015C40D9000E0CEDF /* Base64Transcoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		538518B115C40D9600E0CEDF /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
+		538518B415C40DF700E0CEDF /* OAHMAC_SHA1SignatureProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OAHMAC_SHA1SignatureProvider.h; sourceTree = "<group>"; };
+		538518B515C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHMAC_SHA1SignatureProvider.m; sourceTree = "<group>"; };
+		538518B715C40E1300E0CEDF /* AppSettingsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSettingsHelper.h; sourceTree = "<group>"; };
+		538518B815C40E1800E0CEDF /* AppSettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettingsHelper.m; sourceTree = "<group>"; };
+		538518BA15C40E1E00E0CEDF /* OAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OAuth.h; sourceTree = "<group>"; };
+		538518BB15C40E2300E0CEDF /* OAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuth.m; sourceTree = "<group>"; };
+		538518BD15C40E2900E0CEDF /* PluConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PluConnector.h; sourceTree = "<group>"; };
+		538518BE15C40E2D00E0CEDF /* PluConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluConnector.m; sourceTree = "<group>"; };
+		538518C015C40E3700E0CEDF /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		538518C115C40E3B00E0CEDF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		538518C315C40E4000E0CEDF /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		538518C515C40E4400E0CEDF /* OAuthLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OAuthLoginViewController.h; sourceTree = "<group>"; };
+		538518C615C40E4900E0CEDF /* OAuthLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthLoginViewController.m; sourceTree = "<group>"; };
+		538518C815C40E4E00E0CEDF /* OAuthLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthLoginViewController.xib; sourceTree = "<group>"; };
+		538518CA15C40E5A00E0CEDF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		538518CB15C40E5F00E0CEDF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +97,11 @@
 		5385187C15C40CBA00E0CEDF /* iPlu */ = {
 			isa = PBXGroup;
 			children = (
-				5385188515C40CBA00E0CEDF /* AppDelegate.h */,
-				5385188615C40CBA00E0CEDF /* AppDelegate.m */,
+				538518CB15C40E5F00E0CEDF /* AppDelegate.m */,
+				538518CA15C40E5A00E0CEDF /* AppDelegate.h */,
+				538518A515C40D7700E0CEDF /* Views */,
+				5385189E15C40D6A00E0CEDF /* Helpers */,
+				5385189415C40D5E00E0CEDF /* Classes */,
 				5385187D15C40CBA00E0CEDF /* Supporting Files */,
 			);
 			path = iPlu;
@@ -88,6 +116,44 @@
 				5385188415C40CBA00E0CEDF /* iPlu-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5385189415C40D5E00E0CEDF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				538518BD15C40E2900E0CEDF /* PluConnector.h */,
+				538518BE15C40E2D00E0CEDF /* PluConnector.m */,
+				538518BA15C40E1E00E0CEDF /* OAuth.h */,
+				538518BB15C40E2300E0CEDF /* OAuth.m */,
+				538518B715C40E1300E0CEDF /* AppSettingsHelper.h */,
+				538518B815C40E1800E0CEDF /* AppSettingsHelper.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		5385189E15C40D6A00E0CEDF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				538518B515C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m */,
+				538518B415C40DF700E0CEDF /* OAHMAC_SHA1SignatureProvider.h */,
+				538518B015C40D9000E0CEDF /* Base64Transcoder.h */,
+				538518B115C40D9600E0CEDF /* Base64Transcoder.c */,
+			);
+			name = Helpers;
+			path = iPlu/Helpers;
+			sourceTree = SOURCE_ROOT;
+		};
+		538518A515C40D7700E0CEDF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				538518C015C40E3700E0CEDF /* MainViewController.h */,
+				538518C115C40E3B00E0CEDF /* MainViewController.m */,
+				538518C315C40E4000E0CEDF /* MainViewController.xib */,
+				538518C515C40E4400E0CEDF /* OAuthLoginViewController.h */,
+				538518C615C40E4900E0CEDF /* OAuthLoginViewController.m */,
+				538518C815C40E4E00E0CEDF /* OAuthLoginViewController.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +208,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5385188115C40CBA00E0CEDF /* InfoPlist.strings in Resources */,
+				538518C415C40E4000E0CEDF /* MainViewController.xib in Resources */,
+				538518C915C40E4E00E0CEDF /* OAuthLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +221,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5385188315C40CBA00E0CEDF /* main.m in Sources */,
-				5385188715C40CBA00E0CEDF /* AppDelegate.m in Sources */,
+				538518B215C40D9600E0CEDF /* Base64Transcoder.c in Sources */,
+				538518B615C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m in Sources */,
+				538518B915C40E1800E0CEDF /* AppSettingsHelper.m in Sources */,
+				538518BC15C40E2300E0CEDF /* OAuth.m in Sources */,
+				538518BF15C40E2D00E0CEDF /* PluConnector.m in Sources */,
+				538518C215C40E3B00E0CEDF /* MainViewController.m in Sources */,
+				538518C715C40E4900E0CEDF /* OAuthLoginViewController.m in Sources */,
+				538518CC15C40E5F00E0CEDF /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +297,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iPlu/iPlu-Prefix.pch";
 				INFOPLIST_FILE = "iPlu/iPlu-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -233,6 +309,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iPlu/iPlu-Prefix.pch";
 				INFOPLIST_FILE = "iPlu/iPlu-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -257,6 +334,7 @@
 				5385188C15C40CBA00E0CEDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

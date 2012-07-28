@@ -2,17 +2,23 @@
 //  AppDelegate.m
 //  iPlu
 //
-//  Created by Semen Belokovsky on 28.07.12.
-//  Copyright (c) 2012 Semen Belokovsky. All rights reserved.
+//  Created by Sema Belokovsky on 17.07.12.
+//  Copyright (c) 2012 Nulana. All rights reserved.
 //
 
 #import "AppDelegate.h"
 
+#import "MainViewController.h"
+
 @implementation AppDelegate
+
+@synthesize window = m_window;
+@synthesize mainViewController = m_mainViewController;
 
 - (void)dealloc
 {
-	[_window release];
+	[m_window release];
+	[m_mainViewController release];
     [super dealloc];
 }
 
@@ -20,7 +26,8 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+	self.mainViewController = [[[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil] autorelease];
+	self.window.rootViewController = self.mainViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
