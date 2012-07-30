@@ -167,7 +167,13 @@ static PluConnector *m_instance;
 	NSString *baseString;
 	baseString = [@"GET&" stringByAppendingFormat:@"%@&%@",urlEncode(apiUrl),normEncodedParameters];
 	
-	NSString *secret = [APPSECRET stringByAppendingString:@"&"];
+	NSString *secret;
+	if ([self.tokenKey length]) {
+		secret = [APPSECRET stringByAppendingFormat:@"&%@",self.tokenKey];
+	} else {
+		secret = [APPSECRET stringByAppendingString:@"&"];
+	}
+	
 	NSString *urlString = [apiUrl stringByAppendingFormat:@"?%@&oauth_signature=%@", [parameters urlEncoded], urlEncode([OAHMAC_SHA1SignatureProvider signClearText:baseString withSecret:secret])];
 	NSLog(@"\nsign %@ \nby secret %@", baseString, secret);
 	NSLog(@"send: %@",urlString);
@@ -205,16 +211,20 @@ static PluConnector *m_instance;
 	NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 	
 	NSLog(@"receive %@", dataString);
-	[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:dataString];
 	
-	
-	NSMutableDictionary *object = [NSMutableDictionary new];
-	NSArray *parameters = [dataString componentsSeparatedByString:@"&"];
-	for (NSString *i in parameters) {
-		NSArray *keyValue = [i componentsSeparatedByString:@"="];
-		[object setValue:[keyValue objectAtIndex:1] forKey:[keyValue objectAtIndex:0]];
+	if ([dataString rangeOfString:@"DOCTYPE"].length > 0) {
+		NSLog(@"ERROR");
+	} else {
+		NSMutableDictionary *object = [NSMutableDictionary new];
+		NSArray *parameters = [dataString componentsSeparatedByString:@"&"];
+		for (NSString *i in parameters) {
+			NSArray *keyValue = [i componentsSeparatedByString:@"="];
+			[object setValue:[keyValue objectAtIndex:1] forKey:[keyValue objectAtIndex:0]];
+		}
+		[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:object];
 	}
-	[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:object];
+	
+	
 	
 /*	if ([((PluConnection *)connection).response.MIMEType isEqualToString:@"text/html"]) {
 		[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:dataString];

@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "PluConnector.h"
 
-@interface OAuthLoginViewController : UIViewController <PluConnectorDelegate>
+@interface OAuthLoginViewController : UIViewController <PluConnectorDelegate, UIWebViewDelegate> {
+	NSString *m_oauth_verifier;
+}
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, retain) IBOutlet UIWebView *pluWebView;
 
 @end
