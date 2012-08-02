@@ -3,7 +3,7 @@
 //  iPlu
 //
 //  Created by Sema Belokovsky on 23.07.12.
-//  Copyright (c) 2012 Nulana. All rights reserved.
+//  Copyright (c) 2012 Sema Belokovsky. All rights reserved.
 //
 
 #import "PluConnector.h"
@@ -94,6 +94,7 @@ static NSString *urlEncode(id object)
 @property (nonatomic, retain) PluCommand *command;
 @property (nonatomic, retain) NSURLResponse *response;
 @property (nonatomic, retain) NSMutableData *data;
+@property (nonatomic, assign) long int totalFileSize;
 
 - (id)initWithRequest:(NSURLRequest *)request command:(PluCommand *)cmd delegate:(id)delegate;
 
@@ -101,7 +102,7 @@ static NSString *urlEncode(id object)
 
 @implementation PluConnection
 
-@synthesize response, data;
+@synthesize response, data, totalFileSize;
 
 - (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate
 {
@@ -168,20 +169,21 @@ static PluConnector *m_instance;
 	baseString = [@"GET&" stringByAppendingFormat:@"%@&%@",urlEncode(apiUrl),normEncodedParameters];
 	
 	NSString *secret;
-	if ([self.tokenKey length]) {
-		secret = [APPSECRET stringByAppendingFormat:@"&%@",self.tokenKey];
+	if ([self.tokenSecret length]) {
+		secret = [APPSECRET stringByAppendingFormat:@"&%@",self.tokenSecret];
 	} else {
 		secret = [APPSECRET stringByAppendingString:@"&"];
 	}
 	
 	NSString *urlString = [apiUrl stringByAppendingFormat:@"?%@&oauth_signature=%@", [parameters urlEncoded], urlEncode([OAHMAC_SHA1SignatureProvider signClearText:baseString withSecret:secret])];
-	NSLog(@"\nsign %@ \nby secret %@", baseString, secret);
-	NSLog(@"send: %@",urlString);
+//	NSLog(@"\nsign %@ \nby secret %@", baseString, secret);
+	NSLog(@"send:\n%@",urlString);
 	
-	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-	
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+	[request setValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
 	m_delegate = delegate;
 	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	PluConnection *connection = [[PluConnection alloc] initWithRequest:request command:command delegate:self];
 	
 	//NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -195,48 +197,52 @@ static PluConnector *m_instance;
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-	((PluConnection *)connection).response  = [response retain];
-	NSLog(@"receive: %@",response.MIMEType);
+	((PluConnection *)connection).response = [response retain];
+	((PluConnection *)connection).totalFileSize = response.expectedContentLength;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
 	[((PluConnection *)connection).data appendData:data];
+	NSLog(@"%d from %ld", ((PluConnection *)connection).data.length, ((PluConnection *)connection).totalFileSize);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	NSData *data = ((PluConnection *)connection).data;
 	
 	NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 	
-	NSLog(@"receive %@", dataString);
+	NSLog(@"receive:\n%@", dataString);
 	
-	if ([dataString rangeOfString:@"DOCTYPE"].length > 0) {
-		NSLog(@"ERROR");
-	} else {
-		NSMutableDictionary *object = [NSMutableDictionary new];
-		NSArray *parameters = [dataString componentsSeparatedByString:@"&"];
-		for (NSString *i in parameters) {
-			NSArray *keyValue = [i componentsSeparatedByString:@"="];
-			[object setValue:[keyValue objectAtIndex:1] forKey:[keyValue objectAtIndex:0]];
-		}
-		[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:object];
-	}
-	
-	
-	
-/*	if ([((PluConnection *)connection).response.MIMEType isEqualToString:@"text/html"]) {
-		[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:dataString];
-	} else {
+	if ([((PluConnection *)connection).response.MIMEType isEqualToString:@"application/json"]) {
 		SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
-		
 		NSDictionary *jsonObject = [jsonParser objectWithData:data];
+		[jsonParser release];
+		jsonParser = nil;
+		[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:jsonObject];
+	}
+	if ([((PluConnection *)connection).response.MIMEType isEqualToString:@"text/html"]) {
+		if ([dataString rangeOfString:@"DOCTYPE"].length > 0) {
+			NSLog(@"ERROR");
+		} else {
+			NSMutableDictionary *object = [NSMutableDictionary new];
+			NSArray *parameters = [dataString componentsSeparatedByString:@"&"];
+			for (NSString *i in parameters) {
+				NSArray *keyValue = [i componentsSeparatedByString:@"="];
+				[object setValue:[keyValue lastObject] forKey:[keyValue objectAtIndex:0]];
+			}
+			[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:object];
+		}
 		
-		[jsonParser release], jsonParser = nil;
-		
-		
-	}*/
+	}
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	NSLog(@"ERROR: %@",error);
 }
 
 + (NSDate *)dateWithPluDate:(NSString *)pluDate

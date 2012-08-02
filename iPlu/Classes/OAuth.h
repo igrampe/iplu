@@ -3,7 +3,7 @@
 //  iPlu
 //
 //  Created by Sema Belokovsky on 17.07.12.
-//  Copyright (c) 2012 Nulana. All rights reserved.
+//  Copyright (c) 2012 Semen Belokovsky. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
