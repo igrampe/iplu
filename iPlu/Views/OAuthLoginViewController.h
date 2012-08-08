@@ -7,14 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PluConnector.h"
 #import "MBProgressHUD.h"
 
-@interface OAuthLoginViewController : UIViewController <PluConnectorDelegate, UIWebViewDelegate, MBProgressHUDDelegate> {
-	NSString *m_oauth_verifier;
+@protocol LoginDelegate <NSObject>
+
+- (void)verifierObtained:(NSString *)oauth_verifier;
+@property (nonatomic, retain) NSString *tokenKey;
+
+@end
+
+@interface OAuthLoginViewController : UIViewController <UIWebViewDelegate, MBProgressHUDDelegate> {
 	MBProgressHUD *HUD;
+	id<LoginDelegate> m_delegate;
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView *pluWebView;
+@property (nonatomic, assign) id<LoginDelegate> delegate;
+
+- (void)showLoginPage;
 
 @end

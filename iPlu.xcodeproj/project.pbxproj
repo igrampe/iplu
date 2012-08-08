@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5300B09D15C9C72200E46B07 /* TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5300B09C15C9C72200E46B07 /* TimelineCell.m */; };
-		5300B0A015C9C73200E46B07 /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5300B09F15C9C73200E46B07 /* TimelineCell.xib */; };
 		53616C7D15C7DD14002DB5C3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 53616C7C15C7DD14002DB5C3 /* MBProgressHUD.m */; };
 		5385187715C40CBA00E0CEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5385187615C40CBA00E0CEDF /* UIKit.framework */; };
 		5385187915C40CBA00E0CEDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5385187815C40CBA00E0CEDF /* Foundation.framework */; };
@@ -18,7 +16,7 @@
 		538518B215C40D9600E0CEDF /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 538518B115C40D9600E0CEDF /* Base64Transcoder.c */; };
 		538518B615C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518B515C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m */; };
 		538518B915C40E1800E0CEDF /* AppSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518B815C40E1800E0CEDF /* AppSettingsHelper.m */; };
-		538518BC15C40E2300E0CEDF /* OAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518BB15C40E2300E0CEDF /* OAuth.m */; };
+		538518BC15C40E2300E0CEDF /* OAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518BB15C40E2300E0CEDF /* OAuthProvider.m */; };
 		538518BF15C40E2D00E0CEDF /* PluConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518BE15C40E2D00E0CEDF /* PluConnector.m */; };
 		538518C215C40E3B00E0CEDF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518C115C40E3B00E0CEDF /* MainViewController.m */; };
 		538518C415C40E4000E0CEDF /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 538518C315C40E4000E0CEDF /* MainViewController.xib */; };
@@ -42,9 +40,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5300B09B15C9C72200E46B07 /* TimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineCell.h; sourceTree = "<group>"; };
-		5300B09C15C9C72200E46B07 /* TimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineCell.m; sourceTree = "<group>"; };
-		5300B09F15C9C73200E46B07 /* TimelineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
 		53616C7B15C7DD14002DB5C3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		53616C7C15C7DD14002DB5C3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5385187215C40CBA00E0CEDF /* iPlu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPlu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,8 +56,8 @@
 		538518B515C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHMAC_SHA1SignatureProvider.m; sourceTree = "<group>"; };
 		538518B715C40E1300E0CEDF /* AppSettingsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSettingsHelper.h; sourceTree = "<group>"; };
 		538518B815C40E1800E0CEDF /* AppSettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettingsHelper.m; sourceTree = "<group>"; };
-		538518BA15C40E1E00E0CEDF /* OAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OAuth.h; sourceTree = "<group>"; };
-		538518BB15C40E2300E0CEDF /* OAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuth.m; sourceTree = "<group>"; };
+		538518BA15C40E1E00E0CEDF /* OAuthProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OAuthProvider.h; sourceTree = "<group>"; };
+		538518BB15C40E2300E0CEDF /* OAuthProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthProvider.m; sourceTree = "<group>"; };
 		538518BD15C40E2900E0CEDF /* PluConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PluConnector.h; sourceTree = "<group>"; };
 		538518BE15C40E2D00E0CEDF /* PluConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluConnector.m; sourceTree = "<group>"; };
 		538518C015C40E3700E0CEDF /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -159,8 +154,8 @@
 			children = (
 				53616C7A15C7DD14002DB5C3 /* MBProgressHUD */,
 				538518D515C4787700E0CEDF /* JSON */,
-				538518CB15C40E5F00E0CEDF /* AppDelegate.m */,
 				538518CA15C40E5A00E0CEDF /* AppDelegate.h */,
+				538518CB15C40E5F00E0CEDF /* AppDelegate.m */,
 				538518A515C40D7700E0CEDF /* Views */,
 				5385189E15C40D6A00E0CEDF /* Helpers */,
 				5385189415C40D5E00E0CEDF /* Classes */,
@@ -187,8 +182,8 @@
 				53FD1A8915CB157E00F9C9CF /* PluData.m */,
 				538518BD15C40E2900E0CEDF /* PluConnector.h */,
 				538518BE15C40E2D00E0CEDF /* PluConnector.m */,
-				538518BA15C40E1E00E0CEDF /* OAuth.h */,
-				538518BB15C40E2300E0CEDF /* OAuth.m */,
+				538518BA15C40E1E00E0CEDF /* OAuthProvider.h */,
+				538518BB15C40E2300E0CEDF /* OAuthProvider.m */,
 				538518B715C40E1300E0CEDF /* AppSettingsHelper.h */,
 				538518B815C40E1800E0CEDF /* AppSettingsHelper.m */,
 				53FD1A8C15CB15D800F9C9CF /* UserData.h */,
@@ -218,9 +213,6 @@
 				538518C515C40E4400E0CEDF /* OAuthLoginViewController.h */,
 				538518C615C40E4900E0CEDF /* OAuthLoginViewController.m */,
 				538518C815C40E4E00E0CEDF /* OAuthLoginViewController.xib */,
-				5300B09B15C9C72200E46B07 /* TimelineCell.h */,
-				5300B09C15C9C72200E46B07 /* TimelineCell.m */,
-				5300B09F15C9C73200E46B07 /* TimelineCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,7 +303,6 @@
 				5385188115C40CBA00E0CEDF /* InfoPlist.strings in Resources */,
 				538518C415C40E4000E0CEDF /* MainViewController.xib in Resources */,
 				538518C915C40E4E00E0CEDF /* OAuthLoginViewController.xib in Resources */,
-				5300B0A015C9C73200E46B07 /* TimelineCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +317,7 @@
 				538518B215C40D9600E0CEDF /* Base64Transcoder.c in Sources */,
 				538518B615C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				538518B915C40E1800E0CEDF /* AppSettingsHelper.m in Sources */,
-				538518BC15C40E2300E0CEDF /* OAuth.m in Sources */,
+				538518BC15C40E2300E0CEDF /* OAuthProvider.m in Sources */,
 				538518BF15C40E2D00E0CEDF /* PluConnector.m in Sources */,
 				538518C215C40E3B00E0CEDF /* MainViewController.m in Sources */,
 				538518C715C40E4900E0CEDF /* OAuthLoginViewController.m in Sources */,
@@ -344,7 +335,6 @@
 				538518F915C4787700E0CEDF /* SBJsonUTF8Stream.m in Sources */,
 				538518FA15C4787700E0CEDF /* SBJsonWriter.m in Sources */,
 				53616C7D15C7DD14002DB5C3 /* MBProgressHUD.m in Sources */,
-				5300B09D15C9C72200E46B07 /* TimelineCell.m in Sources */,
 				53FD1A8A15CB157E00F9C9CF /* PluData.m in Sources */,
 				53FD1A8E15CB15D800F9C9CF /* UserData.m in Sources */,
 			);

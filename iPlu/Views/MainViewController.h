@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "PluConnector.h"
-#import "OAuthLoginViewController.h"
+#import "OAuthProvider.h"
 
-@interface MainViewController : UINavigationController
+@interface MainViewController : UIViewController
 <PluConnectorDelegate,
 UITableViewDataSource,
-UITableViewDelegate> {
-	OAuthLoginViewController *m_oAuthViewController;
+UITableViewDelegate,
+OAuthDelegate> {
+	NSMutableArray *m_plurks;
+	UITableView *m_timelineView;
 }
+
+@property (nonatomic, retain) IBOutlet UITableView *timelineView;
 
 @end

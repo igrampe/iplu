@@ -8,21 +8,25 @@
 
 #import "AppSettingsHelper.h"
 
+#define AccessToken @"accessToken"
+#define AccessTokenSecret @"accessTokenSecret"
+
 @implementation AppSettingsHelper
 
 + (void)saveAccessTokenKey:(NSString *)key andSecret:(NSString *)secret
 {
-	
+	[[NSUserDefaults standardUserDefaults] setObject:key forKey:AccessToken];
+	[[NSUserDefaults standardUserDefaults] setObject:secret forKey:AccessTokenSecret];
 }
 
 + (NSString *)getAccessTokenKey
 {
-	return nil;
+	return [[NSUserDefaults standardUserDefaults] objectForKey:AccessToken];
 }
 
 + (NSString *)getAccessTokenSecret
 {
-	return nil;
+	return [[NSUserDefaults standardUserDefaults] objectForKey:AccessTokenSecret];
 }
 
 

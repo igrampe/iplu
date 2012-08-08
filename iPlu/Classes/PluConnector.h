@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+	kHTMLError = 0,
+	kInvalidToken = 1,
+	kInvalidTimestamp = 40004
+} ErrorCode;
+
 @interface PluCommand : NSObject
 
 @property (nonatomic, retain) NSString *command;
@@ -20,7 +26,7 @@
 @protocol PluConnectorDelegate <NSObject>
 
 - (void)pluCommand:(PluCommand *)command finishedWithResult:(NSDictionary *)result;
-- (void)pluCommandFailed:(PluCommand *)command;
+- (void)pluCommandFailed:(PluCommand *)command withErrorCode:(ErrorCode)code;
 
 @end
 
@@ -34,7 +40,7 @@
 @property (nonatomic, retain) NSString *tokenSecret;
 @property (nonatomic, assign) id<PluConnectorDelegate> delegate;
 
-+ (PluConnector *)instance;
++ (PluConnector *)sharedInstance;
 + (NSDate *)dateWithPluDate:(NSString *)pluDate;
 + (NSString *)pluDateWithDate:(NSDate *)date;
 

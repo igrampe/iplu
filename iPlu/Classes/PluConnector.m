@@ -140,23 +140,23 @@ static NSString *urlEncode(id object)
 @synthesize tokenSecret = m_tokenSecret;
 @synthesize delegate = m_delegate;
 
-static PluConnector *m_instance;
+static PluConnector *m_sharedInstance;
 
-+ (PluConnector *)instance
++ (PluConnector *)sharedInstance
 {
 	@synchronized(self) {
-		if (m_instance == nil ) {
+		if (m_sharedInstance == nil ) {
 			[[self alloc] init];
 		}
 	}
 	
-	return m_instance;
+	return m_sharedInstance;
 }
 
 - (id)init {
 	self = [super init];
 	if (self) {
-		m_instance = self;
+		m_sharedInstance = self;
 	}
 	return self;
 }
@@ -199,12 +199,12 @@ static PluConnector *m_instance;
 {
 	((PluConnection *)connection).response = [response retain];
 	((PluConnection *)connection).totalFileSize = response.expectedContentLength;
+	NSLog(@"%@",response.MIMEType);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
 	[((PluConnection *)connection).data appendData:data];
-	NSLog(@"%d from %ld", ((PluConnection *)connection).data.length, ((PluConnection *)connection).totalFileSize);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -226,14 +226,21 @@ static PluConnector *m_instance;
 	if ([((PluConnection *)connection).response.MIMEType isEqualToString:@"text/html"]) {
 		if ([dataString rangeOfString:@"DOCTYPE"].length > 0) {
 			NSLog(@"ERROR");
+			[m_delegate pluCommandFailed:((PluConnection *)connection).command withErrorCode:kHTMLError];
 		} else {
-			NSMutableDictionary *object = [NSMutableDictionary new];
-			NSArray *parameters = [dataString componentsSeparatedByString:@"&"];
-			for (NSString *i in parameters) {
-				NSArray *keyValue = [i componentsSeparatedByString:@"="];
-				[object setValue:[keyValue lastObject] forKey:[keyValue objectAtIndex:0]];
+			if ([dataString rangeOfString:@"error_text"].length > 0) {
+				NSString *errorCode = [[dataString substringFromIndex:16] substringToIndex:5];
+				NSLog(@"%@",errorCode);
+				[m_delegate pluCommandFailed:((PluConnection *)connection).command withErrorCode:kInvalidToken];
+			} else {
+				NSMutableDictionary *object = [NSMutableDictionary new];
+				NSArray *parameters = [dataString componentsSeparatedByString:@"&"];
+				for (NSString *i in parameters) {
+					NSArray *keyValue = [i componentsSeparatedByString:@"="];
+					[object setValue:[keyValue lastObject] forKey:[keyValue objectAtIndex:0]];
+				}
+				[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:object];
 			}
-			[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:object];
 		}
 		
 	}
