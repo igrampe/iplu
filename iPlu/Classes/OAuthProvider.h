@@ -11,8 +11,6 @@
 #import "AppSettingsHelper.h"
 #import "PluConnector.h"
 
-#define OAuthURL @"http://www.plurk.com/OAuth/"
-
 @protocol OAuthDelegate <NSObject>
 
 - (void)tokenObtained;

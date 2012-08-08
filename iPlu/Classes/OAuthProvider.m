@@ -9,9 +9,6 @@
 #import "OAuthProvider.h"
 #import "OAHMAC_SHA1SignatureProvider.h"
 
-#define APPKEY @"tG0lk2XlB63h"
-#define APPSECRET @"Zgtcy0XOCSvPUcAHvF9fDfLfT7yOn48k"
-
 @implementation OAuthProvider
 @synthesize delegate = m_delegate;
 @synthesize tokenKey = m_tokenKey;
@@ -53,11 +50,11 @@ static OAuthProvider *m_sharedInstance;
 	NSString *timestampString = [NSString stringWithFormat:@"%d",[timestampObject intValue]];
 	srand (time(NULL));
 	NSString *onceString = [NSString stringWithFormat:@"%d",rand()%1000000000];
-	[m_parameters setValue:onceString forKey:@"oauth_nonce"];
-	[m_parameters setValue:timestampString forKey:@"oauth_timestamp"];
-	[m_parameters setValue:@"tG0lk2XlB63h" forKey:@"oauth_consumer_key"];
-	[m_parameters setValue:@"HMAC-SHA1" forKey:@"oauth_signature_method"];
-	[m_parameters setValue:@"1.0" forKey:@"oauth_version"];
+	[m_parameters setValue:onceString forKey:_oauth_nonce];
+	[m_parameters setValue:timestampString forKey:_oauth_timestamp];
+	[m_parameters setValue:APPKEY forKey:_oauth_consumer_key];
+	[m_parameters setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
+	[m_parameters setValue:@"1.0" forKey:_oauth_version];
 	PluCommand *command = [[PluCommand alloc] initWithString:@"OAuth/request_token"];
 	[[PluConnector sharedInstance] pluCommand:command withParameters:m_parameters delegate:self];
 }
@@ -79,11 +76,11 @@ static OAuthProvider *m_sharedInstance;
 	NSString *timestampString = [NSString stringWithFormat:@"%d",[timestampObject intValue]];
 	srand (time(NULL));
 	NSString *onceString = [NSString stringWithFormat:@"%d",rand()%1000000000];
-	[m_parameters setValue:@"tG0lk2XlB63h" forKey:@"oauth_consumer_key"];
-	[m_parameters setValue:onceString forKey:@"oauth_nonce"];
-	[m_parameters setValue:@"HMAC-SHA1" forKey:@"oauth_signature_method"];
-	[m_parameters setValue:timestampString forKey:@"oauth_timestamp"];
-	[m_parameters setValue:@"1.0" forKey:@"oauth_version"];
+	[m_parameters setValue:APPKEY forKey:_oauth_consumer_key];
+	[m_parameters setValue:onceString forKey:_oauth_nonce];
+	[m_parameters setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
+	[m_parameters setValue:timestampString forKey:_oauth_timestamp];
+	[m_parameters setValue:@"1.0" forKey:_oauth_version];
 	[m_parameters setValue:[[PluConnector sharedInstance] tokenKey] forKey:@"oauth_token"];
 	[m_parameters setValue:[[PluConnector sharedInstance] tokenSecret] forKey:@"oauth_token_secret"];
 	[m_parameters setValue:oauth_verifier forKey:@"oauth_verifier"];
@@ -96,12 +93,11 @@ static OAuthProvider *m_sharedInstance;
 	if ([command.command isEqualToString:@"OAuth/request_token"]) {
 		[[PluConnector sharedInstance] setTokenKey:[result objectForKey:@"oauth_token"]];
 		[[PluConnector sharedInstance] setTokenSecret:[result objectForKey:@"oauth_token_secret"]];
-		NSLog(@"%@ %@",[[PluConnector sharedInstance] tokenKey], [[PluConnector sharedInstance] tokenSecret]);
 		m_tokenKey = [[PluConnector sharedInstance] tokenKey];
 		[m_viewController showLoginPage];
 	}
 	if ([command.command isEqualToString:@"OAuth/access_token"]) {
-		NSLog(@"Token: %@", result);
+//		NSLog(@"Token: %@", result);
 		[[PluConnector sharedInstance] setTokenKey:[result objectForKey:@"oauth_token"]];
 		[[PluConnector sharedInstance] setTokenSecret:[result objectForKey:@"oauth_token_secret"]];
 		[AppSettingsHelper saveAccessTokenKey:[[PluConnector sharedInstance] tokenKey]

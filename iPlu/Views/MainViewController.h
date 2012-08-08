@@ -11,12 +11,14 @@
 #import "OAuthProvider.h"
 
 @interface MainViewController : UIViewController
-<PluConnectorDelegate,
-UITableViewDataSource,
+<UITableViewDataSource,
 UITableViewDelegate,
-OAuthDelegate> {
+PluConnectorDelegate,
+OAuthDelegate,
+MBProgressHUDDelegate> {
 	NSMutableArray *m_plurks;
-	UITableView *m_timelineView;
+	IBOutlet UITableView *m_timelineView;
+	MBProgressHUD *HUD;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *timelineView;

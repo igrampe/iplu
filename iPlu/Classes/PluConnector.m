@@ -199,7 +199,7 @@ static PluConnector *m_sharedInstance;
 {
 	((PluConnection *)connection).response = [response retain];
 	((PluConnection *)connection).totalFileSize = response.expectedContentLength;
-	NSLog(@"%@",response.MIMEType);
+//	NSLog(@"%@",response.MIMEType);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -225,13 +225,13 @@ static PluConnector *m_sharedInstance;
 	}
 	if ([((PluConnection *)connection).response.MIMEType isEqualToString:@"text/html"]) {
 		if ([dataString rangeOfString:@"DOCTYPE"].length > 0) {
-			NSLog(@"ERROR");
-			[m_delegate pluCommandFailed:((PluConnection *)connection).command withErrorCode:kHTMLError];
+			int codePosition = ([dataString rangeOfString:@"<title>"].location + [dataString rangeOfString:@"<title>"].length);
+			NSString *errorCodeString = [[dataString substringFromIndex:codePosition] substringToIndex:3];
+			[m_delegate pluCommandFailed:((PluConnection *)connection).command withErrorCode:[errorCodeString intValue]];
 		} else {
 			if ([dataString rangeOfString:@"error_text"].length > 0) {
-				NSString *errorCode = [[dataString substringFromIndex:16] substringToIndex:5];
-				NSLog(@"%@",errorCode);
-				[m_delegate pluCommandFailed:((PluConnection *)connection).command withErrorCode:kInvalidToken];
+				NSString *errorCodeString = [[dataString substringFromIndex:16] substringToIndex:5];
+				[m_delegate pluCommandFailed:((PluConnection *)connection).command withErrorCode:[errorCodeString intValue]];
 			} else {
 				NSMutableDictionary *object = [NSMutableDictionary new];
 				NSArray *parameters = [dataString componentsSeparatedByString:@"&"];

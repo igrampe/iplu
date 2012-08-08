@@ -8,10 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+#define APPKEY @"tG0lk2XlB63h"
+#define APPSECRET @"Zgtcy0XOCSvPUcAHvF9fDfLfT7yOn48k"
+#define _oauth_signature_method @"oauth_signature_method"
+#define _HMAC_SHA1 @"HMAC-SHA1"
+#define _oauth_nonce @"oauth_nonce"
+#define _oauth_consumer_key @"oauth_consumer_key"
+#define _oauth_version @"oauth_version"
+#define _oauth_timestamp @"oauth_timestamp"
+#define _oauth_token @"oauth_token"
+
 typedef enum {
 	kHTMLError = 0,
 	kInvalidToken = 1,
-	kInvalidTimestamp = 40004
+	kBadRequest = 400,
+	kInvalidTimestamp = 40004,
+	kInvalidAccesToken = 40106
 } ErrorCode;
 
 @interface PluCommand : NSObject

@@ -18,9 +18,8 @@
     if (self) {
         [[PluConnector sharedInstance] setTokenKey:[AppSettingsHelper getAccessTokenKey]];
 		[[PluConnector sharedInstance] setTokenSecret:[AppSettingsHelper getAccessTokenSecret]];
-		m_timelineView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+		m_timelineView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
 		m_plurks = [NSMutableArray new];
-		NSLog(@"key %@ secret %@", [[PluConnector sharedInstance] tokenKey], [[PluConnector sharedInstance] tokenSecret]);
     }
     return self;
 }
@@ -33,26 +32,30 @@
 	m_timelineView.dataSource = self;
 	m_timelineView.delegate = self;
 	m_timelineView.frame = self.view.frame;
-	self.view = m_timelineView;
+	[self.view addSubview:m_timelineView];
+	
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+	[super viewDidAppear:animated];
 	if ([[[PluConnector sharedInstance] tokenKey] length] < 1) {
 		[OAuthProvider sharedInstance].delegate = self;
 		[[OAuthProvider sharedInstance] getToken];
 	} else {
+		HUD = [[MBProgressHUD showHUDAddedTo:self.view animated:YES] retain];
+		HUD.delegate = self;
 		NSMutableDictionary *dict = [NSMutableDictionary new];
 		NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
 		NSNumber *timestampObject = [NSNumber numberWithDouble:timestamp];
 		NSString *timestampString = [NSString stringWithFormat:@"%d",[timestampObject intValue]];
 		srand (time(NULL));
 		NSString *onceString = [NSString stringWithFormat:@"%d",rand()%1000000000];
-		[dict setValue:onceString forKey:@"oauth_nonce"];
-		[dict setValue:timestampString forKey:@"oauth_timestamp"];
-		[dict setValue:@"tG0lk2XlB63h" forKey:@"oauth_consumer_key"];
-		[dict setValue:@"HMAC-SHA1" forKey:@"oauth_signature_method"];
-		[dict setValue:@"1.0" forKey:@"oauth_version"];
+		[dict setValue:onceString forKey:_oauth_nonce];
+		[dict setValue:timestampString forKey:_oauth_timestamp];
+		[dict setValue:APPKEY forKey:_oauth_consumer_key];
+		[dict setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
+		[dict setValue:@"1.0" forKey:_oauth_version];
 		[dict setValue:[[PluConnector sharedInstance] tokenKey] forKey:@"oauth_token"];
 		PluCommand *command = [[PluCommand alloc] initWithString:@"APP/Timeline/getPlurks"];
 		[[PluConnector sharedInstance] pluCommand:command withParameters:dict delegate:self];
@@ -66,28 +69,55 @@
 	switch (code) {
 		case kHTMLError:
 			break;
-		case kInvalidToken: {
+		case kInvalidAccesToken: {
 			[OAuthProvider sharedInstance].delegate = self;
 			[[OAuthProvider sharedInstance] resetToken];
 		}
 			break;
+		case kInvalidTimestamp:
+			NSLog(@"Invalid timestamp");
+			break;
 		default:
 			break;
 	}
+	[HUD hide:YES afterDelay:0];
 }
 
 - (void)pluCommand:(PluCommand *)command finishedWithResult:(NSDictionary *)result
 {
 	NSLog(@"result:\n%@",result);
 	if ([command.command isEqualToString:@"APP/Timeline/getPlurks"]) {
+		[m_plurks removeAllObjects];
 		[m_plurks addObjectsFromArray:[(NSDictionary *)result objectForKey:@"plurks"]];
 	}
-	[m_timelineView reloadData];
+	[self.timelineView reloadData];
+	[HUD hide:YES afterDelay:0];
 }
 
 - (void)tokenObtained
 {
-	
+	HUD = [[MBProgressHUD showHUDAddedTo:self.view animated:YES] retain];
+	HUD.delegate = self;
+	NSMutableDictionary *dict = [NSMutableDictionary new];
+	NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
+	NSNumber *timestampObject = [NSNumber numberWithDouble:timestamp];
+	NSString *timestampString = [NSString stringWithFormat:@"%d",[timestampObject intValue]];
+	srand (time(NULL));
+	NSString *onceString = [NSString stringWithFormat:@"%d",rand()%1000000000];
+	[dict setValue:onceString forKey:_oauth_nonce];
+	[dict setValue:timestampString forKey:_oauth_timestamp];
+	[dict setValue:APPKEY forKey:_oauth_consumer_key];
+	[dict setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
+	[dict setValue:@"1.0" forKey:_oauth_version];
+	[dict setValue:[[PluConnector sharedInstance] tokenKey] forKey:_oauth_token];
+	PluCommand *command = [[PluCommand alloc] initWithString:@"APP/Timeline/getPlurks"];
+	[[PluConnector sharedInstance] pluCommand:command withParameters:dict delegate:self];
+}
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	[HUD removeFromSuperview];
+	[HUD release];
+	HUD = nil;
 }
 
 #pragma mark - UITableView DataSource
