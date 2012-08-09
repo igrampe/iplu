@@ -42,6 +42,19 @@
 		53A24F7615D31D7100FF5B4D /* ColorsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A24F7515D31D7100FF5B4D /* ColorsProvider.m */; };
 		53A24F8015D33A2E00FF5B4D /* volume_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A24F7F15D33A2E00FF5B4D /* volume_up.png */; };
 		53A24F8215D33A5500FF5B4D /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A24F8115D33A5500FF5B4D /* like.png */; };
+		53A24FD015D39DFF00FF5B4D /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FBC15D39DFF00FF5B4D /* Ubuntu-B.ttf */; };
+		53A24FD115D39DFF00FF5B4D /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FBD15D39DFF00FF5B4D /* Ubuntu-BI.ttf */; };
+		53A24FD215D39DFF00FF5B4D /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FBE15D39DFF00FF5B4D /* Ubuntu-C.ttf */; };
+		53A24FD315D39DFF00FF5B4D /* Ubuntu-L.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FBF15D39DFF00FF5B4D /* Ubuntu-L.ttf */; };
+		53A24FD415D39DFF00FF5B4D /* Ubuntu-LI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC015D39DFF00FF5B4D /* Ubuntu-LI.ttf */; };
+		53A24FD515D39DFF00FF5B4D /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC115D39DFF00FF5B4D /* Ubuntu-M.ttf */; };
+		53A24FD615D39DFF00FF5B4D /* Ubuntu-MI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC215D39DFF00FF5B4D /* Ubuntu-MI.ttf */; };
+		53A24FD715D39DFF00FF5B4D /* Ubuntu-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC315D39DFF00FF5B4D /* Ubuntu-R.ttf */; };
+		53A24FD815D39DFF00FF5B4D /* Ubuntu-RI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC415D39DFF00FF5B4D /* Ubuntu-RI.ttf */; };
+		53A24FD915D39DFF00FF5B4D /* UbuntuMono-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC515D39DFF00FF5B4D /* UbuntuMono-B.ttf */; };
+		53A24FDA15D39DFF00FF5B4D /* UbuntuMono-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC615D39DFF00FF5B4D /* UbuntuMono-BI.ttf */; };
+		53A24FDB15D39DFF00FF5B4D /* UbuntuMono-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC715D39DFF00FF5B4D /* UbuntuMono-R.ttf */; };
+		53A24FDC15D39DFF00FF5B4D /* UbuntuMono-RI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC815D39DFF00FF5B4D /* UbuntuMono-RI.ttf */; };
 		53FD1A8A15CB157E00F9C9CF /* PlurkData.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FD1A8915CB157E00F9C9CF /* PlurkData.m */; };
 		53FD1A8E15CB15D800F9C9CF /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FD1A8D15CB15D800F9C9CF /* UserData.m */; };
 /* End PBXBuildFile section */
@@ -109,6 +122,20 @@
 		53A24F7515D31D7100FF5B4D /* ColorsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorsProvider.m; path = iPlu/Classes/ColorsProvider.m; sourceTree = SOURCE_ROOT; };
 		53A24F7F15D33A2E00FF5B4D /* volume_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_up.png; sourceTree = "<group>"; };
 		53A24F8115D33A5500FF5B4D /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
+		53A24FB215D39CA900FF5B4D /* iPlu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iPlu.entitlements; sourceTree = "<group>"; };
+		53A24FBC15D39DFF00FF5B4D /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
+		53A24FBD15D39DFF00FF5B4D /* Ubuntu-BI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-BI.ttf"; sourceTree = "<group>"; };
+		53A24FBE15D39DFF00FF5B4D /* Ubuntu-C.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-C.ttf"; sourceTree = "<group>"; };
+		53A24FBF15D39DFF00FF5B4D /* Ubuntu-L.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-L.ttf"; sourceTree = "<group>"; };
+		53A24FC015D39DFF00FF5B4D /* Ubuntu-LI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-LI.ttf"; sourceTree = "<group>"; };
+		53A24FC115D39DFF00FF5B4D /* Ubuntu-M.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-M.ttf"; sourceTree = "<group>"; };
+		53A24FC215D39DFF00FF5B4D /* Ubuntu-MI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-MI.ttf"; sourceTree = "<group>"; };
+		53A24FC315D39DFF00FF5B4D /* Ubuntu-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-R.ttf"; sourceTree = "<group>"; };
+		53A24FC415D39DFF00FF5B4D /* Ubuntu-RI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-RI.ttf"; sourceTree = "<group>"; };
+		53A24FC515D39DFF00FF5B4D /* UbuntuMono-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UbuntuMono-B.ttf"; sourceTree = "<group>"; };
+		53A24FC615D39DFF00FF5B4D /* UbuntuMono-BI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UbuntuMono-BI.ttf"; sourceTree = "<group>"; };
+		53A24FC715D39DFF00FF5B4D /* UbuntuMono-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UbuntuMono-R.ttf"; sourceTree = "<group>"; };
+		53A24FC815D39DFF00FF5B4D /* UbuntuMono-RI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UbuntuMono-RI.ttf"; sourceTree = "<group>"; };
 		53FD1A8815CB157E00F9C9CF /* PlurkData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlurkData.h; path = iPlu/Classes/PlurkData.h; sourceTree = SOURCE_ROOT; };
 		53FD1A8915CB157E00F9C9CF /* PlurkData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlurkData.m; path = iPlu/Classes/PlurkData.m; sourceTree = SOURCE_ROOT; };
 		53FD1A8C15CB15D800F9C9CF /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
@@ -170,6 +197,7 @@
 		5385187C15C40CBA00E0CEDF /* iPlu */ = {
 			isa = PBXGroup;
 			children = (
+				53A24FB215D39CA900FF5B4D /* iPlu.entitlements */,
 				53A24F6F15D311CF00FF5B4D /* Resources */,
 				53616C7A15C7DD14002DB5C3 /* MBProgressHUD */,
 				538518D515C4787700E0CEDF /* JSON */,
@@ -276,11 +304,32 @@
 		53A24F6F15D311CF00FF5B4D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53A24FB415D39DFF00FF5B4D /* ubuntu_font */,
 				53A24F8115D33A5500FF5B4D /* like.png */,
 				53A24F7F15D33A2E00FF5B4D /* volume_up.png */,
 				53A24F7015D311D000FF5B4D /* user.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		53A24FB415D39DFF00FF5B4D /* ubuntu_font */ = {
+			isa = PBXGroup;
+			children = (
+				53A24FBC15D39DFF00FF5B4D /* Ubuntu-B.ttf */,
+				53A24FBD15D39DFF00FF5B4D /* Ubuntu-BI.ttf */,
+				53A24FBE15D39DFF00FF5B4D /* Ubuntu-C.ttf */,
+				53A24FBF15D39DFF00FF5B4D /* Ubuntu-L.ttf */,
+				53A24FC015D39DFF00FF5B4D /* Ubuntu-LI.ttf */,
+				53A24FC115D39DFF00FF5B4D /* Ubuntu-M.ttf */,
+				53A24FC215D39DFF00FF5B4D /* Ubuntu-MI.ttf */,
+				53A24FC315D39DFF00FF5B4D /* Ubuntu-R.ttf */,
+				53A24FC415D39DFF00FF5B4D /* Ubuntu-RI.ttf */,
+				53A24FC515D39DFF00FF5B4D /* UbuntuMono-B.ttf */,
+				53A24FC615D39DFF00FF5B4D /* UbuntuMono-BI.ttf */,
+				53A24FC715D39DFF00FF5B4D /* UbuntuMono-R.ttf */,
+				53A24FC815D39DFF00FF5B4D /* UbuntuMono-RI.ttf */,
+			);
+			path = ubuntu_font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +390,19 @@
 				53A24F7115D311D000FF5B4D /* user.png in Resources */,
 				53A24F8015D33A2E00FF5B4D /* volume_up.png in Resources */,
 				53A24F8215D33A5500FF5B4D /* like.png in Resources */,
+				53A24FD015D39DFF00FF5B4D /* Ubuntu-B.ttf in Resources */,
+				53A24FD115D39DFF00FF5B4D /* Ubuntu-BI.ttf in Resources */,
+				53A24FD215D39DFF00FF5B4D /* Ubuntu-C.ttf in Resources */,
+				53A24FD315D39DFF00FF5B4D /* Ubuntu-L.ttf in Resources */,
+				53A24FD415D39DFF00FF5B4D /* Ubuntu-LI.ttf in Resources */,
+				53A24FD515D39DFF00FF5B4D /* Ubuntu-M.ttf in Resources */,
+				53A24FD615D39DFF00FF5B4D /* Ubuntu-MI.ttf in Resources */,
+				53A24FD715D39DFF00FF5B4D /* Ubuntu-R.ttf in Resources */,
+				53A24FD815D39DFF00FF5B4D /* Ubuntu-RI.ttf in Resources */,
+				53A24FD915D39DFF00FF5B4D /* UbuntuMono-B.ttf in Resources */,
+				53A24FDA15D39DFF00FF5B4D /* UbuntuMono-BI.ttf in Resources */,
+				53A24FDB15D39DFF00FF5B4D /* UbuntuMono-R.ttf in Resources */,
+				53A24FDC15D39DFF00FF5B4D /* UbuntuMono-RI.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +476,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -432,7 +494,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

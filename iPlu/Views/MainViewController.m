@@ -129,7 +129,10 @@
 	}
 	cell.delegate = self;
 	cell.content.text = [[m_plurks objectAtIndex:indexPath.row] objectForKey:@"content"];
+	cell.content.font = [UIFont fontWithName:@"Ubuntu-R" size:14];
 	cell.name.text = [NSString stringWithFormat:@"%@",[[m_plurks objectAtIndex:indexPath.row] objectForKey:@"owner_id"]];
+	cell.name.font = [UIFont fontWithName:@"Ubuntu-R" size:15];
+	
 	[[cell.avatar layer] setMasksToBounds:YES];
 	[[cell.avatar layer] setBorderColor:[UIColor grayColor].CGColor];
 	[[cell.avatar layer] setBorderWidth:1];

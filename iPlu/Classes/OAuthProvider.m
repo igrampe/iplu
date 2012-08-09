@@ -109,6 +109,14 @@ static OAuthProvider *m_sharedInstance;
 
 - (void)plurkCommandFailed:(PlurkCommand *)command withErrorCode:(ErrorCode)code
 {
+	switch (code) {
+		case kInvalidTimestamp:
+			[self resetToken];
+			break;
+			
+		default:
+			break;
+	}
 	NSLog(@"Command %@ failed with code %d", command.command, code);
 }
 
