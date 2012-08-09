@@ -1,5 +1,5 @@
 //
-//  PluData.h
+//  PlurkData.h
 //  iPlu
 //
 //  Created by Sema Belokovsky on 03.08.12.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PluData : NSObject {
+@interface PlurkData : NSObject {
 	NSString *plurkId;
 	NSString *qualifier;
 	NSString *qualifierTranslated;

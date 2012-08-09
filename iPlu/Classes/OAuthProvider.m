@@ -55,15 +55,15 @@ static OAuthProvider *m_sharedInstance;
 	[m_parameters setValue:APPKEY forKey:_oauth_consumer_key];
 	[m_parameters setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
 	[m_parameters setValue:@"1.0" forKey:_oauth_version];
-	PluCommand *command = [[PluCommand alloc] initWithString:@"OAuth/request_token"];
-	[[PluConnector sharedInstance] pluCommand:command withParameters:m_parameters delegate:self];
+	PlurkCommand *command = [[PlurkCommand alloc] initWithString:@"OAuth/request_token"];
+	[[PlurkConnector sharedInstance] plurkCommand:command withParameters:m_parameters delegate:self];
 }
 
 - (void)resetToken
 {
 	[AppSettingsHelper saveAccessTokenKey:@"" andSecret:@""];
-	[[PluConnector sharedInstance] setTokenKey:@""];
-	[[PluConnector sharedInstance] setTokenSecret:@""];
+	[[PlurkConnector sharedInstance] setTokenKey:@""];
+	[[PlurkConnector sharedInstance] setTokenSecret:@""];
 	[((UIViewController *)m_delegate) presentModalViewController:m_viewController animated:YES];
 	[self getRequestToken];
 }
@@ -81,33 +81,33 @@ static OAuthProvider *m_sharedInstance;
 	[m_parameters setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
 	[m_parameters setValue:timestampString forKey:_oauth_timestamp];
 	[m_parameters setValue:@"1.0" forKey:_oauth_version];
-	[m_parameters setValue:[[PluConnector sharedInstance] tokenKey] forKey:@"oauth_token"];
-	[m_parameters setValue:[[PluConnector sharedInstance] tokenSecret] forKey:@"oauth_token_secret"];
+	[m_parameters setValue:[[PlurkConnector sharedInstance] tokenKey] forKey:@"oauth_token"];
+	[m_parameters setValue:[[PlurkConnector sharedInstance] tokenSecret] forKey:@"oauth_token_secret"];
 	[m_parameters setValue:oauth_verifier forKey:@"oauth_verifier"];
-	PluCommand *command = [[PluCommand alloc] initWithString:@"OAuth/access_token"];
-	[[PluConnector sharedInstance] pluCommand:command withParameters:m_parameters delegate:self];
+	PlurkCommand *command = [[PlurkCommand alloc] initWithString:@"OAuth/access_token"];
+	[[PlurkConnector sharedInstance] plurkCommand:command withParameters:m_parameters delegate:self];
 }
 
-- (void)pluCommand:(PluCommand *)command finishedWithResult:(NSDictionary *)result
+- (void)plurkCommand:(PlurkCommand *)command finishedWithResult:(NSDictionary *)result
 {
 	if ([command.command isEqualToString:@"OAuth/request_token"]) {
-		[[PluConnector sharedInstance] setTokenKey:[result objectForKey:@"oauth_token"]];
-		[[PluConnector sharedInstance] setTokenSecret:[result objectForKey:@"oauth_token_secret"]];
-		m_tokenKey = [[PluConnector sharedInstance] tokenKey];
+		[[PlurkConnector sharedInstance] setTokenKey:[result objectForKey:@"oauth_token"]];
+		[[PlurkConnector sharedInstance] setTokenSecret:[result objectForKey:@"oauth_token_secret"]];
+		m_tokenKey = [[PlurkConnector sharedInstance] tokenKey];
 		[m_viewController showLoginPage];
 	}
 	if ([command.command isEqualToString:@"OAuth/access_token"]) {
 //		NSLog(@"Token: %@", result);
-		[[PluConnector sharedInstance] setTokenKey:[result objectForKey:@"oauth_token"]];
-		[[PluConnector sharedInstance] setTokenSecret:[result objectForKey:@"oauth_token_secret"]];
-		[AppSettingsHelper saveAccessTokenKey:[[PluConnector sharedInstance] tokenKey]
-									andSecret:[[PluConnector sharedInstance] tokenSecret]];
+		[[PlurkConnector sharedInstance] setTokenKey:[result objectForKey:@"oauth_token"]];
+		[[PlurkConnector sharedInstance] setTokenSecret:[result objectForKey:@"oauth_token_secret"]];
+		[AppSettingsHelper saveAccessTokenKey:[[PlurkConnector sharedInstance] tokenKey]
+									andSecret:[[PlurkConnector sharedInstance] tokenSecret]];
 		[m_viewController dismissModalViewControllerAnimated:YES];
 		[m_delegate tokenObtained];
 	}
 }
 
-- (void)pluCommandFailed:(PluCommand *)command withErrorCode:(ErrorCode)code
+- (void)plurkCommandFailed:(PlurkCommand *)command withErrorCode:(ErrorCode)code
 {
 	NSLog(@"Command %@ failed with code %d", command.command, code);
 }

@@ -1,5 +1,5 @@
 //
-//  PluConnector.h
+//  PlurkConnector.h
 //  iPlu
 //
 //  Created by Sema Belokovsky on 23.07.12.
@@ -26,7 +26,7 @@ typedef enum {
 	kInvalidAccesToken = 40106
 } ErrorCode;
 
-@interface PluCommand : NSObject
+@interface PlurkCommand : NSObject
 
 @property (nonatomic, retain) NSString *command;
 @property (nonatomic, assign) NSString *method;
@@ -35,27 +35,27 @@ typedef enum {
 
 @end
 
-@protocol PluConnectorDelegate <NSObject>
+@protocol PlurkConnectorDelegate <NSObject>
 
-- (void)pluCommand:(PluCommand *)command finishedWithResult:(NSDictionary *)result;
-- (void)pluCommandFailed:(PluCommand *)command withErrorCode:(ErrorCode)code;
+- (void)plurkCommand:(PlurkCommand *)command finishedWithResult:(NSDictionary *)result;
+- (void)plurkCommandFailed:(PlurkCommand *)command withErrorCode:(ErrorCode)code;
 
 @end
 
-@interface PluConnector : NSObject <NSURLConnectionDataDelegate> {
+@interface PlurkConnector : NSObject <NSURLConnectionDataDelegate> {
 	NSString *m_tokenKey;
 	NSString *m_tokenSecret;
-	id<PluConnectorDelegate> m_delegate;
+	id<PlurkConnectorDelegate> m_delegate;
 }
 
 @property (nonatomic, retain) NSString *tokenKey;
 @property (nonatomic, retain) NSString *tokenSecret;
-@property (nonatomic, assign) id<PluConnectorDelegate> delegate;
+@property (nonatomic, assign) id<PlurkConnectorDelegate> delegate;
 
-+ (PluConnector *)sharedInstance;
++ (PlurkConnector *)sharedInstance;
 + (NSDate *)dateWithPluDate:(NSString *)pluDate;
 + (NSString *)pluDateWithDate:(NSDate *)date;
 
-- (void)pluCommand:(PluCommand *)command withParameters:(NSDictionary *)parameters delegate:(id<PluConnectorDelegate>)delegate;
+- (void)plurkCommand:(PlurkCommand *)command withParameters:(NSDictionary *)parameters delegate:(id<PlurkConnectorDelegate>)delegate;
 
 @end

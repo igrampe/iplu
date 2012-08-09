@@ -8,6 +8,8 @@
 
 #import "MainViewController.h"
 #import "AppSettingsHelper.h"
+#import <QuartzCore/QuartzCore.h>
+#import "ColorsProvider.h"
 
 @implementation MainViewController
 @synthesize timelineView = m_timelineView;
@@ -16,9 +18,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [[PluConnector sharedInstance] setTokenKey:[AppSettingsHelper getAccessTokenKey]];
-		[[PluConnector sharedInstance] setTokenSecret:[AppSettingsHelper getAccessTokenSecret]];
-		m_timelineView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        [[PlurkConnector sharedInstance] setTokenKey:[AppSettingsHelper getAccessTokenKey]];
+		[[PlurkConnector sharedInstance] setTokenSecret:[AppSettingsHelper getAccessTokenSecret]];
 		m_plurks = [NSMutableArray new];
     }
     return self;
@@ -29,17 +30,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	m_timelineView.dataSource = self;
-	m_timelineView.delegate = self;
-	m_timelineView.frame = self.view.frame;
-	[self.view addSubview:m_timelineView];
-	
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	if ([[[PluConnector sharedInstance] tokenKey] length] < 1) {
+	if ([[[PlurkConnector sharedInstance] tokenKey] length] < 1) {
 		[OAuthProvider sharedInstance].delegate = self;
 		[[OAuthProvider sharedInstance] getToken];
 	} else {
@@ -56,15 +52,15 @@
 		[dict setValue:APPKEY forKey:_oauth_consumer_key];
 		[dict setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
 		[dict setValue:@"1.0" forKey:_oauth_version];
-		[dict setValue:[[PluConnector sharedInstance] tokenKey] forKey:@"oauth_token"];
-		PluCommand *command = [[PluCommand alloc] initWithString:@"APP/Timeline/getPlurks"];
-		[[PluConnector sharedInstance] pluCommand:command withParameters:dict delegate:self];
+		[dict setValue:[[PlurkConnector sharedInstance] tokenKey] forKey:@"oauth_token"];
+		PlurkCommand *command = [[PlurkCommand alloc] initWithString:@"APP/Timeline/getPlurks"];
+		[[PlurkConnector sharedInstance] plurkCommand:command withParameters:dict delegate:self];
 	}
 }
 
-#pragma mark - PluConnector Delegate
+#pragma mark - PlurkConnector Delegate
 
-- (void)pluCommandFailed:(NSString *)request withErrorCode:(ErrorCode)code
+- (void)plurkCommandFailed:(NSString *)request withErrorCode:(ErrorCode)code
 {
 	switch (code) {
 		case kHTMLError:
@@ -83,7 +79,7 @@
 	[HUD hide:YES afterDelay:0];
 }
 
-- (void)pluCommand:(PluCommand *)command finishedWithResult:(NSDictionary *)result
+- (void)plurkCommand:(PlurkCommand *)command finishedWithResult:(NSDictionary *)result
 {
 	NSLog(@"result:\n%@",result);
 	if ([command.command isEqualToString:@"APP/Timeline/getPlurks"]) {
@@ -109,9 +105,9 @@
 	[dict setValue:APPKEY forKey:_oauth_consumer_key];
 	[dict setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
 	[dict setValue:@"1.0" forKey:_oauth_version];
-	[dict setValue:[[PluConnector sharedInstance] tokenKey] forKey:_oauth_token];
-	PluCommand *command = [[PluCommand alloc] initWithString:@"APP/Timeline/getPlurks"];
-	[[PluConnector sharedInstance] pluCommand:command withParameters:dict delegate:self];
+	[dict setValue:[[PlurkConnector sharedInstance] tokenKey] forKey:_oauth_token];
+	PlurkCommand *command = [[PlurkCommand alloc] initWithString:@"APP/Timeline/getPlurks"];
+	[[PlurkConnector sharedInstance] plurkCommand:command withParameters:dict delegate:self];
 }
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {
@@ -124,12 +120,37 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *cellIdentifier = [@"TimelineCell" stringByAppendingFormat:@"_%d_%d", indexPath.section, indexPath.row];
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	NSString *cellIdentifier = @"TimelineCell";
+	TimelineCell *cell = (TimelineCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+		cell = [[TimelineCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+	} else {
+		[cell hidePopup:NO];
 	}
-	cell.textLabel.text = [[m_plurks objectAtIndex:indexPath.row] objectForKey:@"content"];
+	cell.delegate = self;
+	cell.content.text = [[m_plurks objectAtIndex:indexPath.row] objectForKey:@"content"];
+	cell.name.text = [NSString stringWithFormat:@"%@",[[m_plurks objectAtIndex:indexPath.row] objectForKey:@"owner_id"]];
+	[[cell.avatar layer] setMasksToBounds:YES];
+	[[cell.avatar layer] setBorderColor:[UIColor grayColor].CGColor];
+	[[cell.avatar layer] setBorderWidth:1];
+	[[cell.avatar layer] setCornerRadius:25.0];
+	
+	NSString *qualifierTranslated = [[m_plurks objectAtIndex:indexPath.row] objectForKey:@"qualifier_translated"];
+	NSString *qualifier = [[m_plurks objectAtIndex:indexPath.row] objectForKey:@"qualifier"];
+	[[cell.qualifier layer] setMasksToBounds:YES];
+	[[cell.qualifier layer] setCornerRadius:10];
+	
+	if ([qualifierTranslated isEqualToString:@""]) {
+		cell.qualifier.hidden = YES;
+	} else {
+		NSString *firstCapChar = [[qualifierTranslated substringToIndex:1] capitalizedString];
+		NSString *cappedString = [qualifierTranslated stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:firstCapChar];
+		cell.qualifier.text = cappedString;
+		cell.qualifier.hidden = NO;
+		cell.qualifier.backgroundColor = (UIColor *)[[ColorsProvider sharedInstance]
+										  colorForKey:qualifier
+										  inPalette:@"qualifierPalette"];
+	}
 	return cell;
 }
 
@@ -143,7 +164,33 @@
 	return [m_plurks count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	TimelineCell *cell = (TimelineCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+	return [cell heightForContent];
+}
+
 #pragma mark - UITableView Delegate
 
+- (void)cell:(UITableViewCell *)cell touchedWithAction:(TimelineCellAction)action
+{
+	switch (action) {
+		case kPopup: {
+			NSLog(@"Popup");
+			NSArray *visibleCells = [m_timelineView indexPathsForVisibleRows];
+			for (NSIndexPath *i in visibleCells) {
+				UITableViewCell *currentCell = [self tableView:m_timelineView cellForRowAtIndexPath:i];
+				currentCell.selected = NO;
+			}
+		}
+			break;
+		case kShare:
+			NSLog(@"Share");
+			break;
+			
+		default:
+			break;
+	}
+}
 
 @end

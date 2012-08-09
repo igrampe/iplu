@@ -7,16 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PluConnector.h"
+#import "PlurkConnector.h"
 #import "OAuthProvider.h"
+#import "TimelineCell.h"
 
 @interface MainViewController : UIViewController
 <UITableViewDataSource,
 UITableViewDelegate,
-PluConnectorDelegate,
+PlurkConnectorDelegate,
 OAuthDelegate,
-MBProgressHUDDelegate> {
+MBProgressHUDDelegate,
+TimelineCellDelegate> {
 	NSMutableArray *m_plurks;
+	NSMutableArray *m_users;
 	IBOutlet UITableView *m_timelineView;
 	MBProgressHUD *HUD;
 }

@@ -17,7 +17,7 @@
 		538518B615C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518B515C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m */; };
 		538518B915C40E1800E0CEDF /* AppSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518B815C40E1800E0CEDF /* AppSettingsHelper.m */; };
 		538518BC15C40E2300E0CEDF /* OAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518BB15C40E2300E0CEDF /* OAuthProvider.m */; };
-		538518BF15C40E2D00E0CEDF /* PluConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518BE15C40E2D00E0CEDF /* PluConnector.m */; };
+		538518BF15C40E2D00E0CEDF /* PlurkConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518BE15C40E2D00E0CEDF /* PlurkConnector.m */; };
 		538518C215C40E3B00E0CEDF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518C115C40E3B00E0CEDF /* MainViewController.m */; };
 		538518C415C40E4000E0CEDF /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 538518C315C40E4000E0CEDF /* MainViewController.xib */; };
 		538518C715C40E4900E0CEDF /* OAuthLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518C615C40E4900E0CEDF /* OAuthLoginViewController.m */; };
@@ -35,7 +35,14 @@
 		538518F815C4787700E0CEDF /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518EA15C4787700E0CEDF /* SBJsonTokeniser.m */; };
 		538518F915C4787700E0CEDF /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518EC15C4787700E0CEDF /* SBJsonUTF8Stream.m */; };
 		538518FA15C4787700E0CEDF /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 538518EE15C4787700E0CEDF /* SBJsonWriter.m */; };
-		53FD1A8A15CB157E00F9C9CF /* PluData.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FD1A8915CB157E00F9C9CF /* PluData.m */; };
+		53A24F6815D309FC00FF5B4D /* TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A24F6715D309FB00FF5B4D /* TimelineCell.m */; };
+		53A24F6A15D30A1100FF5B4D /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53A24F6915D30A1100FF5B4D /* TimelineCell.xib */; };
+		53A24F7115D311D000FF5B4D /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A24F7015D311D000FF5B4D /* user.png */; };
+		53A24F7315D316F500FF5B4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A24F7215D316F500FF5B4D /* QuartzCore.framework */; };
+		53A24F7615D31D7100FF5B4D /* ColorsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A24F7515D31D7100FF5B4D /* ColorsProvider.m */; };
+		53A24F8015D33A2E00FF5B4D /* volume_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A24F7F15D33A2E00FF5B4D /* volume_up.png */; };
+		53A24F8215D33A5500FF5B4D /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A24F8115D33A5500FF5B4D /* like.png */; };
+		53FD1A8A15CB157E00F9C9CF /* PlurkData.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FD1A8915CB157E00F9C9CF /* PlurkData.m */; };
 		53FD1A8E15CB15D800F9C9CF /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FD1A8D15CB15D800F9C9CF /* UserData.m */; };
 /* End PBXBuildFile section */
 
@@ -58,8 +65,8 @@
 		538518B815C40E1800E0CEDF /* AppSettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettingsHelper.m; sourceTree = "<group>"; };
 		538518BA15C40E1E00E0CEDF /* OAuthProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OAuthProvider.h; sourceTree = "<group>"; };
 		538518BB15C40E2300E0CEDF /* OAuthProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthProvider.m; sourceTree = "<group>"; };
-		538518BD15C40E2900E0CEDF /* PluConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PluConnector.h; sourceTree = "<group>"; };
-		538518BE15C40E2D00E0CEDF /* PluConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluConnector.m; sourceTree = "<group>"; };
+		538518BD15C40E2900E0CEDF /* PlurkConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlurkConnector.h; sourceTree = "<group>"; };
+		538518BE15C40E2D00E0CEDF /* PlurkConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlurkConnector.m; sourceTree = "<group>"; };
 		538518C015C40E3700E0CEDF /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		538518C115C40E3B00E0CEDF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		538518C315C40E4000E0CEDF /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -93,8 +100,17 @@
 		538518EC15C4787700E0CEDF /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		538518ED15C4787700E0CEDF /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		538518EE15C4787700E0CEDF /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		53FD1A8815CB157E00F9C9CF /* PluData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluData.h; path = iPlu/Classes/PluData.h; sourceTree = SOURCE_ROOT; };
-		53FD1A8915CB157E00F9C9CF /* PluData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PluData.m; path = iPlu/Classes/PluData.m; sourceTree = SOURCE_ROOT; };
+		53A24F6615D309FB00FF5B4D /* TimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineCell.h; sourceTree = "<group>"; };
+		53A24F6715D309FB00FF5B4D /* TimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineCell.m; sourceTree = "<group>"; };
+		53A24F6915D30A1100FF5B4D /* TimelineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
+		53A24F7015D311D000FF5B4D /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		53A24F7215D316F500FF5B4D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		53A24F7415D31D7100FF5B4D /* ColorsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorsProvider.h; path = iPlu/Classes/ColorsProvider.h; sourceTree = SOURCE_ROOT; };
+		53A24F7515D31D7100FF5B4D /* ColorsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorsProvider.m; path = iPlu/Classes/ColorsProvider.m; sourceTree = SOURCE_ROOT; };
+		53A24F7F15D33A2E00FF5B4D /* volume_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_up.png; sourceTree = "<group>"; };
+		53A24F8115D33A5500FF5B4D /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
+		53FD1A8815CB157E00F9C9CF /* PlurkData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlurkData.h; path = iPlu/Classes/PlurkData.h; sourceTree = SOURCE_ROOT; };
+		53FD1A8915CB157E00F9C9CF /* PlurkData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlurkData.m; path = iPlu/Classes/PlurkData.m; sourceTree = SOURCE_ROOT; };
 		53FD1A8C15CB15D800F9C9CF /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
 		53FD1A8D15CB15D800F9C9CF /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +123,7 @@
 				5385187715C40CBA00E0CEDF /* UIKit.framework in Frameworks */,
 				5385187915C40CBA00E0CEDF /* Foundation.framework in Frameworks */,
 				5385187B15C40CBA00E0CEDF /* CoreGraphics.framework in Frameworks */,
+				53A24F7315D316F500FF5B4D /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +159,7 @@
 		5385187515C40CBA00E0CEDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53A24F7215D316F500FF5B4D /* QuartzCore.framework */,
 				5385187615C40CBA00E0CEDF /* UIKit.framework */,
 				5385187815C40CBA00E0CEDF /* Foundation.framework */,
 				5385187A15C40CBA00E0CEDF /* CoreGraphics.framework */,
@@ -152,6 +170,7 @@
 		5385187C15C40CBA00E0CEDF /* iPlu */ = {
 			isa = PBXGroup;
 			children = (
+				53A24F6F15D311CF00FF5B4D /* Resources */,
 				53616C7A15C7DD14002DB5C3 /* MBProgressHUD */,
 				538518D515C4787700E0CEDF /* JSON */,
 				538518CA15C40E5A00E0CEDF /* AppDelegate.h */,
@@ -178,10 +197,12 @@
 		5385189415C40D5E00E0CEDF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				53FD1A8815CB157E00F9C9CF /* PluData.h */,
-				53FD1A8915CB157E00F9C9CF /* PluData.m */,
-				538518BD15C40E2900E0CEDF /* PluConnector.h */,
-				538518BE15C40E2D00E0CEDF /* PluConnector.m */,
+				53A24F7415D31D7100FF5B4D /* ColorsProvider.h */,
+				53A24F7515D31D7100FF5B4D /* ColorsProvider.m */,
+				53FD1A8815CB157E00F9C9CF /* PlurkData.h */,
+				53FD1A8915CB157E00F9C9CF /* PlurkData.m */,
+				538518BD15C40E2900E0CEDF /* PlurkConnector.h */,
+				538518BE15C40E2D00E0CEDF /* PlurkConnector.m */,
 				538518BA15C40E1E00E0CEDF /* OAuthProvider.h */,
 				538518BB15C40E2300E0CEDF /* OAuthProvider.m */,
 				538518B715C40E1300E0CEDF /* AppSettingsHelper.h */,
@@ -213,6 +234,9 @@
 				538518C515C40E4400E0CEDF /* OAuthLoginViewController.h */,
 				538518C615C40E4900E0CEDF /* OAuthLoginViewController.m */,
 				538518C815C40E4E00E0CEDF /* OAuthLoginViewController.xib */,
+				53A24F6615D309FB00FF5B4D /* TimelineCell.h */,
+				53A24F6715D309FB00FF5B4D /* TimelineCell.m */,
+				53A24F6915D30A1100FF5B4D /* TimelineCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -247,6 +271,16 @@
 				538518EE15C4787700E0CEDF /* SBJsonWriter.m */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		53A24F6F15D311CF00FF5B4D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				53A24F8115D33A5500FF5B4D /* like.png */,
+				53A24F7F15D33A2E00FF5B4D /* volume_up.png */,
+				53A24F7015D311D000FF5B4D /* user.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,6 +337,10 @@
 				5385188115C40CBA00E0CEDF /* InfoPlist.strings in Resources */,
 				538518C415C40E4000E0CEDF /* MainViewController.xib in Resources */,
 				538518C915C40E4E00E0CEDF /* OAuthLoginViewController.xib in Resources */,
+				53A24F6A15D30A1100FF5B4D /* TimelineCell.xib in Resources */,
+				53A24F7115D311D000FF5B4D /* user.png in Resources */,
+				53A24F8015D33A2E00FF5B4D /* volume_up.png in Resources */,
+				53A24F8215D33A5500FF5B4D /* like.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +356,7 @@
 				538518B615C40E0200E0CEDF /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				538518B915C40E1800E0CEDF /* AppSettingsHelper.m in Sources */,
 				538518BC15C40E2300E0CEDF /* OAuthProvider.m in Sources */,
-				538518BF15C40E2D00E0CEDF /* PluConnector.m in Sources */,
+				538518BF15C40E2D00E0CEDF /* PlurkConnector.m in Sources */,
 				538518C215C40E3B00E0CEDF /* MainViewController.m in Sources */,
 				538518C715C40E4900E0CEDF /* OAuthLoginViewController.m in Sources */,
 				538518CC15C40E5F00E0CEDF /* AppDelegate.m in Sources */,
@@ -335,8 +373,10 @@
 				538518F915C4787700E0CEDF /* SBJsonUTF8Stream.m in Sources */,
 				538518FA15C4787700E0CEDF /* SBJsonWriter.m in Sources */,
 				53616C7D15C7DD14002DB5C3 /* MBProgressHUD.m in Sources */,
-				53FD1A8A15CB157E00F9C9CF /* PluData.m in Sources */,
+				53FD1A8A15CB157E00F9C9CF /* PlurkData.m in Sources */,
 				53FD1A8E15CB15D800F9C9CF /* UserData.m in Sources */,
+				53A24F6815D309FC00FF5B4D /* TimelineCell.m in Sources */,
+				53A24F7615D31D7100FF5B4D /* ColorsProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

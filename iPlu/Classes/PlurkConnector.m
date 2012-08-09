@@ -1,12 +1,12 @@
 //
-//  PluConnector.m
+//  PlurkConnector.m
 //  iPlu
 //
 //  Created by Sema Belokovsky on 23.07.12.
 //  Copyright (c) 2012 Sema Belokovsky. All rights reserved.
 //
 
-#import "PluConnector.h"
+#import "PlurkConnector.h"
 #import "OAHMAC_SHA1SignatureProvider.h"
 #import "SBJsonParser.h"
 
@@ -62,9 +62,9 @@ static NSString *urlEncode(id object)
 
 @end
 
-#pragma mark - PluCommand
+#pragma mark - plurkCommand
 
-@implementation PluCommand
+@implementation PlurkCommand
 
 @synthesize command, method;
 
@@ -91,12 +91,12 @@ static NSString *urlEncode(id object)
 
 @interface PluConnection : NSURLConnection
 
-@property (nonatomic, retain) PluCommand *command;
+@property (nonatomic, retain) PlurkCommand *command;
 @property (nonatomic, retain) NSURLResponse *response;
 @property (nonatomic, retain) NSMutableData *data;
 @property (nonatomic, assign) long int totalFileSize;
 
-- (id)initWithRequest:(NSURLRequest *)request command:(PluCommand *)cmd delegate:(id)delegate;
+- (id)initWithRequest:(NSURLRequest *)request command:(PlurkCommand *)cmd delegate:(id)delegate;
 
 @end
 
@@ -114,7 +114,7 @@ static NSString *urlEncode(id object)
 	return self;
 }
 
-- (id)initWithRequest:(NSURLRequest *)request command:(PluCommand *)cmd delegate:(id)delegate
+- (id)initWithRequest:(NSURLRequest *)request command:(PlurkCommand *)cmd delegate:(id)delegate
 {
 	self = [self initWithRequest:request delegate:delegate];
 	if (self) {
@@ -133,16 +133,16 @@ static NSString *urlEncode(id object)
 
 @end
 
-#pragma mark - PluConnector
+#pragma mark - PlurkConnector
 
-@implementation PluConnector
+@implementation PlurkConnector
 @synthesize tokenKey = m_tokenKey;
 @synthesize tokenSecret = m_tokenSecret;
 @synthesize delegate = m_delegate;
 
-static PluConnector *m_sharedInstance;
+static PlurkConnector *m_sharedInstance;
 
-+ (PluConnector *)sharedInstance
++ (PlurkConnector *)sharedInstance
 {
 	@synchronized(self) {
 		if (m_sharedInstance == nil ) {
@@ -161,7 +161,7 @@ static PluConnector *m_sharedInstance;
 	return self;
 }
 
-- (void)pluCommand:(PluCommand *)command withParameters:(NSDictionary *)parameters delegate:(id<PluConnectorDelegate>)delegate
+- (void)plurkCommand:(PlurkCommand *)command withParameters:(NSDictionary *)parameters delegate:(id<PlurkConnectorDelegate>)delegate
 {
 	NSString *apiUrl = [APIURL stringByAppendingFormat:@"%@",command.command];
 	NSString *normEncodedParameters = [parameters normalizedUrlEncoded];
@@ -221,17 +221,17 @@ static PluConnector *m_sharedInstance;
 		NSDictionary *jsonObject = [jsonParser objectWithData:data];
 		[jsonParser release];
 		jsonParser = nil;
-		[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:jsonObject];
+		[m_delegate plurkCommand:((PluConnection *)connection).command finishedWithResult:jsonObject];
 	}
 	if ([((PluConnection *)connection).response.MIMEType isEqualToString:@"text/html"]) {
 		if ([dataString rangeOfString:@"DOCTYPE"].length > 0) {
 			int codePosition = ([dataString rangeOfString:@"<title>"].location + [dataString rangeOfString:@"<title>"].length);
 			NSString *errorCodeString = [[dataString substringFromIndex:codePosition] substringToIndex:3];
-			[m_delegate pluCommandFailed:((PluConnection *)connection).command withErrorCode:[errorCodeString intValue]];
+			[m_delegate plurkCommandFailed:((PluConnection *)connection).command withErrorCode:[errorCodeString intValue]];
 		} else {
 			if ([dataString rangeOfString:@"error_text"].length > 0) {
 				NSString *errorCodeString = [[dataString substringFromIndex:16] substringToIndex:5];
-				[m_delegate pluCommandFailed:((PluConnection *)connection).command withErrorCode:[errorCodeString intValue]];
+				[m_delegate plurkCommandFailed:((PluConnection *)connection).command withErrorCode:[errorCodeString intValue]];
 			} else {
 				NSMutableDictionary *object = [NSMutableDictionary new];
 				NSArray *parameters = [dataString componentsSeparatedByString:@"&"];
@@ -239,7 +239,7 @@ static PluConnector *m_sharedInstance;
 					NSArray *keyValue = [i componentsSeparatedByString:@"="];
 					[object setValue:[keyValue lastObject] forKey:[keyValue objectAtIndex:0]];
 				}
-				[m_delegate pluCommand:((PluConnection *)connection).command finishedWithResult:object];
+				[m_delegate plurkCommand:((PluConnection *)connection).command finishedWithResult:object];
 			}
 		}
 		

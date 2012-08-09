@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "OAuthLoginViewController.h"
 #import "AppSettingsHelper.h"
-#import "PluConnector.h"
+#import "PlurkConnector.h"
 
 @protocol OAuthDelegate <NSObject>
 
@@ -17,7 +17,7 @@
 
 @end
 
-@interface OAuthProvider : NSObject <PluConnectorDelegate, LoginDelegate> {
+@interface OAuthProvider : NSObject <PlurkConnectorDelegate, LoginDelegate> {
 	id<OAuthDelegate> m_delegate;
 	OAuthLoginViewController *m_viewController;
 	NSMutableDictionary *m_parameters;
