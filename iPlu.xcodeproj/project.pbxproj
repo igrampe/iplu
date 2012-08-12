@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530F30F715D6A5F700E474A9 /* HorizontalPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530F30F615D6A5F700E474A9 /* HorizontalPopup.xib */; };
+		530F30FB15D6A65D00E474A9 /* Popup.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F30FA15D6A65D00E474A9 /* Popup.m */; };
 		53616C7D15C7DD14002DB5C3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 53616C7C15C7DD14002DB5C3 /* MBProgressHUD.m */; };
 		5385187715C40CBA00E0CEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5385187615C40CBA00E0CEDF /* UIKit.framework */; };
 		5385187915C40CBA00E0CEDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5385187815C40CBA00E0CEDF /* Foundation.framework */; };
@@ -40,7 +42,6 @@
 		53A24F7115D311D000FF5B4D /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A24F7015D311D000FF5B4D /* user.png */; };
 		53A24F7315D316F500FF5B4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53A24F7215D316F500FF5B4D /* QuartzCore.framework */; };
 		53A24F7615D31D7100FF5B4D /* ColorsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A24F7515D31D7100FF5B4D /* ColorsProvider.m */; };
-		53A24F8015D33A2E00FF5B4D /* volume_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A24F7F15D33A2E00FF5B4D /* volume_up.png */; };
 		53A24F8215D33A5500FF5B4D /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A24F8115D33A5500FF5B4D /* like.png */; };
 		53A24FD015D39DFF00FF5B4D /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FBC15D39DFF00FF5B4D /* Ubuntu-B.ttf */; };
 		53A24FD115D39DFF00FF5B4D /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FBD15D39DFF00FF5B4D /* Ubuntu-BI.ttf */; };
@@ -55,11 +56,58 @@
 		53A24FDA15D39DFF00FF5B4D /* UbuntuMono-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC615D39DFF00FF5B4D /* UbuntuMono-BI.ttf */; };
 		53A24FDB15D39DFF00FF5B4D /* UbuntuMono-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC715D39DFF00FF5B4D /* UbuntuMono-R.ttf */; };
 		53A24FDC15D39DFF00FF5B4D /* UbuntuMono-RI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53A24FC815D39DFF00FF5B4D /* UbuntuMono-RI.ttf */; };
+		53EDA0BE15D6D3FE001AA947 /* mute.png in Resources */ = {isa = PBXBuildFile; fileRef = 53EDA0BC15D6D3FE001AA947 /* mute.png */; };
+		53EDA0BF15D6D3FE001AA947 /* unmute.png in Resources */ = {isa = PBXBuildFile; fileRef = 53EDA0BD15D6D3FE001AA947 /* unmute.png */; };
+		53EDA0C215D6DF4D001AA947 /* CacheProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EDA0C115D6DF4D001AA947 /* CacheProvider.m */; };
+		53EDA0DF15D71FEA001AA947 /* VerticalMenuPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53EDA0DE15D71FEA001AA947 /* VerticalMenuPopup.xib */; };
+		53EDA0E115D72145001AA947 /* plurk.png in Resources */ = {isa = PBXBuildFile; fileRef = 53EDA0E015D72145001AA947 /* plurk.png */; };
+		53EDA0EB15D7C20B001AA947 /* default.gif in Resources */ = {isa = PBXBuildFile; fileRef = 53EDA0EA15D7C20B001AA947 /* default.gif */; };
+		53EDA12B15D81AB5001AA947 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EDA12415D81A4F001AA947 /* libSDWebImage.a */; };
+		53EDA12D15D81AC7001AA947 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EDA12C15D81AC7001AA947 /* ImageIO.framework */; };
+		53EDA14E15D84746001AA947 /* PlurkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EDA14C15D84745001AA947 /* PlurkViewController.m */; };
+		53EDA14F15D84746001AA947 /* PlurkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53EDA14D15D84745001AA947 /* PlurkViewController.xib */; };
+		53EDA15815D8513A001AA947 /* AGMedallionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EDA15615D8513A001AA947 /* AGMedallionView.m */; };
+		53EDA15915D8513A001AA947 /* sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 53EDA15715D8513A001AA947 /* sample.png */; };
+		53EDA16115D8581F001AA947 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EDA16015D8581F001AA947 /* ODRefreshControl.m */; };
 		53FD1A8A15CB157E00F9C9CF /* PlurkData.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FD1A8915CB157E00F9C9CF /* PlurkData.m */; };
 		53FD1A8E15CB15D800F9C9CF /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FD1A8D15CB15D800F9C9CF /* UserData.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		53EDA12315D81A4F001AA947 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53EDA11A15D81A4E001AA947 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53922D6F148C55820056699D;
+			remoteInfo = SDWebImage;
+		};
+		53EDA12515D81A4F001AA947 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53EDA11A15D81A4E001AA947 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53761325155AD0D5005750A4;
+			remoteInfo = "SDWebImage ARC";
+		};
+		53EDA12715D81A4F001AA947 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53EDA11A15D81A4E001AA947 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 531041E0157EAFA400BBABC3;
+			remoteInfo = "SDWebImage ARC+MKAnnotation";
+		};
+		53EDA12915D81AA1001AA947 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53EDA11A15D81A4E001AA947 /* SDWebImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 53922D6E148C55810056699D;
+			remoteInfo = SDWebImage;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		530F30F615D6A5F700E474A9 /* HorizontalPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalPopup.xib; sourceTree = "<group>"; };
+		530F30F915D6A65D00E474A9 /* Popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
+		530F30FA15D6A65D00E474A9 /* Popup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Popup.m; sourceTree = "<group>"; };
 		53616C7B15C7DD14002DB5C3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		53616C7C15C7DD14002DB5C3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5385187215C40CBA00E0CEDF /* iPlu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPlu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +168,6 @@
 		53A24F7215D316F500FF5B4D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		53A24F7415D31D7100FF5B4D /* ColorsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorsProvider.h; path = iPlu/Classes/ColorsProvider.h; sourceTree = SOURCE_ROOT; };
 		53A24F7515D31D7100FF5B4D /* ColorsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorsProvider.m; path = iPlu/Classes/ColorsProvider.m; sourceTree = SOURCE_ROOT; };
-		53A24F7F15D33A2E00FF5B4D /* volume_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_up.png; sourceTree = "<group>"; };
 		53A24F8115D33A5500FF5B4D /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
 		53A24FB215D39CA900FF5B4D /* iPlu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iPlu.entitlements; sourceTree = "<group>"; };
 		53A24FBC15D39DFF00FF5B4D /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
@@ -136,6 +183,23 @@
 		53A24FC615D39DFF00FF5B4D /* UbuntuMono-BI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UbuntuMono-BI.ttf"; sourceTree = "<group>"; };
 		53A24FC715D39DFF00FF5B4D /* UbuntuMono-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UbuntuMono-R.ttf"; sourceTree = "<group>"; };
 		53A24FC815D39DFF00FF5B4D /* UbuntuMono-RI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UbuntuMono-RI.ttf"; sourceTree = "<group>"; };
+		53EDA0BC15D6D3FE001AA947 /* mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mute.png; sourceTree = "<group>"; };
+		53EDA0BD15D6D3FE001AA947 /* unmute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unmute.png; sourceTree = "<group>"; };
+		53EDA0C015D6DF4D001AA947 /* CacheProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheProvider.h; sourceTree = "<group>"; };
+		53EDA0C115D6DF4D001AA947 /* CacheProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheProvider.m; sourceTree = "<group>"; };
+		53EDA0DE15D71FEA001AA947 /* VerticalMenuPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerticalMenuPopup.xib; sourceTree = "<group>"; };
+		53EDA0E015D72145001AA947 /* plurk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plurk.png; sourceTree = "<group>"; };
+		53EDA0EA15D7C20B001AA947 /* default.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = default.gif; sourceTree = "<group>"; };
+		53EDA11A15D81A4E001AA947 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = iPlu/SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
+		53EDA12C15D81AC7001AA947 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		53EDA14B15D84745001AA947 /* PlurkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlurkViewController.h; sourceTree = "<group>"; };
+		53EDA14C15D84745001AA947 /* PlurkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlurkViewController.m; sourceTree = "<group>"; };
+		53EDA14D15D84745001AA947 /* PlurkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlurkViewController.xib; sourceTree = "<group>"; };
+		53EDA15515D8513A001AA947 /* AGMedallionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGMedallionView.h; sourceTree = "<group>"; };
+		53EDA15615D8513A001AA947 /* AGMedallionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGMedallionView.m; sourceTree = "<group>"; };
+		53EDA15715D8513A001AA947 /* sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample.png; sourceTree = "<group>"; };
+		53EDA15F15D8581F001AA947 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
+		53EDA16015D8581F001AA947 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		53FD1A8815CB157E00F9C9CF /* PlurkData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlurkData.h; path = iPlu/Classes/PlurkData.h; sourceTree = SOURCE_ROOT; };
 		53FD1A8915CB157E00F9C9CF /* PlurkData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlurkData.m; path = iPlu/Classes/PlurkData.m; sourceTree = SOURCE_ROOT; };
 		53FD1A8C15CB15D800F9C9CF /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
@@ -147,6 +211,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53EDA12D15D81AC7001AA947 /* ImageIO.framework in Frameworks */,
+				53EDA12B15D81AB5001AA947 /* libSDWebImage.a in Frameworks */,
 				5385187715C40CBA00E0CEDF /* UIKit.framework in Frameworks */,
 				5385187915C40CBA00E0CEDF /* Foundation.framework in Frameworks */,
 				5385187B15C40CBA00E0CEDF /* CoreGraphics.framework in Frameworks */,
@@ -169,6 +235,7 @@
 		5385186715C40CBA00E0CEDF = {
 			isa = PBXGroup;
 			children = (
+				53EDA11A15D81A4E001AA947 /* SDWebImage.xcodeproj */,
 				5385187C15C40CBA00E0CEDF /* iPlu */,
 				5385187515C40CBA00E0CEDF /* Frameworks */,
 				5385187315C40CBA00E0CEDF /* Products */,
@@ -186,6 +253,7 @@
 		5385187515C40CBA00E0CEDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53EDA12C15D81AC7001AA947 /* ImageIO.framework */,
 				53A24F7215D316F500FF5B4D /* QuartzCore.framework */,
 				5385187615C40CBA00E0CEDF /* UIKit.framework */,
 				5385187815C40CBA00E0CEDF /* Foundation.framework */,
@@ -197,6 +265,8 @@
 		5385187C15C40CBA00E0CEDF /* iPlu */ = {
 			isa = PBXGroup;
 			children = (
+				53EDA15E15D8581E001AA947 /* ODRefreshControl */,
+				53EDA15415D8513A001AA947 /* AGMedallionView */,
 				53A24FB215D39CA900FF5B4D /* iPlu.entitlements */,
 				53A24F6F15D311CF00FF5B4D /* Resources */,
 				53616C7A15C7DD14002DB5C3 /* MBProgressHUD */,
@@ -237,6 +307,8 @@
 				538518B815C40E1800E0CEDF /* AppSettingsHelper.m */,
 				53FD1A8C15CB15D800F9C9CF /* UserData.h */,
 				53FD1A8D15CB15D800F9C9CF /* UserData.m */,
+				53EDA0C015D6DF4D001AA947 /* CacheProvider.h */,
+				53EDA0C115D6DF4D001AA947 /* CacheProvider.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -265,6 +337,13 @@
 				53A24F6615D309FB00FF5B4D /* TimelineCell.h */,
 				53A24F6715D309FB00FF5B4D /* TimelineCell.m */,
 				53A24F6915D30A1100FF5B4D /* TimelineCell.xib */,
+				530F30F915D6A65D00E474A9 /* Popup.h */,
+				530F30FA15D6A65D00E474A9 /* Popup.m */,
+				530F30F615D6A5F700E474A9 /* HorizontalPopup.xib */,
+				53EDA0DE15D71FEA001AA947 /* VerticalMenuPopup.xib */,
+				53EDA14B15D84745001AA947 /* PlurkViewController.h */,
+				53EDA14C15D84745001AA947 /* PlurkViewController.m */,
+				53EDA14D15D84745001AA947 /* PlurkViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -304,10 +383,13 @@
 		53A24F6F15D311CF00FF5B4D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53EDA0BC15D6D3FE001AA947 /* mute.png */,
+				53EDA0BD15D6D3FE001AA947 /* unmute.png */,
 				53A24FB415D39DFF00FF5B4D /* ubuntu_font */,
 				53A24F8115D33A5500FF5B4D /* like.png */,
-				53A24F7F15D33A2E00FF5B4D /* volume_up.png */,
 				53A24F7015D311D000FF5B4D /* user.png */,
+				53EDA0E015D72145001AA947 /* plurk.png */,
+				53EDA0EA15D7C20B001AA947 /* default.gif */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -332,6 +414,35 @@
 			path = ubuntu_font;
 			sourceTree = "<group>";
 		};
+		53EDA11B15D81A4E001AA947 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				53EDA12415D81A4F001AA947 /* libSDWebImage.a */,
+				53EDA12615D81A4F001AA947 /* libSDWebImageARC.a */,
+				53EDA12815D81A4F001AA947 /* libSDWebImageARC+MKAnnotation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		53EDA15415D8513A001AA947 /* AGMedallionView */ = {
+			isa = PBXGroup;
+			children = (
+				53EDA15515D8513A001AA947 /* AGMedallionView.h */,
+				53EDA15615D8513A001AA947 /* AGMedallionView.m */,
+				53EDA15715D8513A001AA947 /* sample.png */,
+			);
+			path = AGMedallionView;
+			sourceTree = "<group>";
+		};
+		53EDA15E15D8581E001AA947 /* ODRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				53EDA15F15D8581F001AA947 /* ODRefreshControl.h */,
+				53EDA16015D8581F001AA947 /* ODRefreshControl.m */,
+			);
+			path = ODRefreshControl;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -346,6 +457,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				53EDA12A15D81AA1001AA947 /* PBXTargetDependency */,
 			);
 			name = iPlu;
 			productName = iPlu;
@@ -371,12 +483,42 @@
 			mainGroup = 5385186715C40CBA00E0CEDF;
 			productRefGroup = 5385187315C40CBA00E0CEDF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 53EDA11B15D81A4E001AA947 /* Products */;
+					ProjectRef = 53EDA11A15D81A4E001AA947 /* SDWebImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5385187115C40CBA00E0CEDF /* iPlu */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		53EDA12415D81A4F001AA947 /* libSDWebImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImage.a;
+			remoteRef = 53EDA12315D81A4F001AA947 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		53EDA12615D81A4F001AA947 /* libSDWebImageARC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImageARC.a;
+			remoteRef = 53EDA12515D81A4F001AA947 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		53EDA12815D81A4F001AA947 /* libSDWebImageARC+MKAnnotation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSDWebImageARC+MKAnnotation.a";
+			remoteRef = 53EDA12715D81A4F001AA947 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5385187015C40CBA00E0CEDF /* Resources */ = {
@@ -388,7 +530,6 @@
 				538518C915C40E4E00E0CEDF /* OAuthLoginViewController.xib in Resources */,
 				53A24F6A15D30A1100FF5B4D /* TimelineCell.xib in Resources */,
 				53A24F7115D311D000FF5B4D /* user.png in Resources */,
-				53A24F8015D33A2E00FF5B4D /* volume_up.png in Resources */,
 				53A24F8215D33A5500FF5B4D /* like.png in Resources */,
 				53A24FD015D39DFF00FF5B4D /* Ubuntu-B.ttf in Resources */,
 				53A24FD115D39DFF00FF5B4D /* Ubuntu-BI.ttf in Resources */,
@@ -403,6 +544,14 @@
 				53A24FDA15D39DFF00FF5B4D /* UbuntuMono-BI.ttf in Resources */,
 				53A24FDB15D39DFF00FF5B4D /* UbuntuMono-R.ttf in Resources */,
 				53A24FDC15D39DFF00FF5B4D /* UbuntuMono-RI.ttf in Resources */,
+				530F30F715D6A5F700E474A9 /* HorizontalPopup.xib in Resources */,
+				53EDA0BE15D6D3FE001AA947 /* mute.png in Resources */,
+				53EDA0BF15D6D3FE001AA947 /* unmute.png in Resources */,
+				53EDA0DF15D71FEA001AA947 /* VerticalMenuPopup.xib in Resources */,
+				53EDA0E115D72145001AA947 /* plurk.png in Resources */,
+				53EDA0EB15D7C20B001AA947 /* default.gif in Resources */,
+				53EDA14F15D84746001AA947 /* PlurkViewController.xib in Resources */,
+				53EDA15915D8513A001AA947 /* sample.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,10 +588,23 @@
 				53FD1A8E15CB15D800F9C9CF /* UserData.m in Sources */,
 				53A24F6815D309FC00FF5B4D /* TimelineCell.m in Sources */,
 				53A24F7615D31D7100FF5B4D /* ColorsProvider.m in Sources */,
+				530F30FB15D6A65D00E474A9 /* Popup.m in Sources */,
+				53EDA0C215D6DF4D001AA947 /* CacheProvider.m in Sources */,
+				53EDA14E15D84746001AA947 /* PlurkViewController.m in Sources */,
+				53EDA15815D8513A001AA947 /* AGMedallionView.m in Sources */,
+				53EDA16115D8581F001AA947 /* ODRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		53EDA12A15D81AA1001AA947 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SDWebImage;
+			targetProxy = 53EDA12915D81AA1001AA947 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5385187F15C40CBA00E0CEDF /* InfoPlist.strings */ = {
@@ -507,8 +669,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iPlu/iPlu-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(OBJROOT)/UninstalledProducts/include",
+					"$(TARGET_BUILD_DIR)/usr/local/lib/include",
+				);
 				INFOPLIST_FILE = "iPlu/iPlu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -521,8 +688,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iPlu/iPlu-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(OBJROOT)/UninstalledProducts/include",
+					"$(TARGET_BUILD_DIR)/usr/local/lib/include",
+				);
 				INFOPLIST_FILE = "iPlu/iPlu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

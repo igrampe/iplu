@@ -14,6 +14,7 @@
 
 @synthesize window = m_window;
 @synthesize mainViewController = m_mainViewController;
+@synthesize navigationController;
 
 - (void)dealloc
 {
@@ -26,8 +27,11 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
+
 	self.mainViewController = [[[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil] autorelease];
-	self.window.rootViewController = self.mainViewController;
+	self.navigationController = [[UINavigationController alloc] initWithRootViewController:m_mainViewController];
+	self.window.rootViewController = self.navigationController;
+
     [self.window makeKeyAndVisible];
     return YES;
 }

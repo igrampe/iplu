@@ -8,15 +8,20 @@
 
 #import "TimelineCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ColorsProvider.h"
 
 @implementation TimelineCell
+
 @synthesize cellView;
 @synthesize avatar;
 @synthesize name;
 @synthesize content;
 @synthesize qualifier;
+@synthesize responseCount;
 @synthesize avatarTapRecognizer;
+
 @synthesize popup;
+@synthesize isPopup;
 @synthesize delegate = m_delegate;
 
 + (NSString *)nibName
@@ -35,9 +40,19 @@
                                         options:nil];
             NSAssert(self.cellView != nil, @"NIB file loaded but content property not set.");
             [self addSubview:self.cellView];
-			isPopup = NO;
-			[popup.layer setMasksToBounds:YES];
-			[popup.layer setCornerRadius:25];
+			self.isPopup = NO;
+			
+			self.name.font = [UIFont fontWithName:@"Ubuntu-R" size:16];
+			
+			[self.avatar.layer setMasksToBounds:YES];
+			[self.avatar.layer setBorderColor:[UIColor grayColor].CGColor];
+			[self.avatar.layer setBorderWidth:1];
+			[self.avatar.layer setCornerRadius:25.0];
+			
+			[self.qualifier.layer setCornerRadius:10];
+			
+			[self.responseCount.layer setCornerRadius:10.0];
+			self.responseCount.textColor = [UIColor whiteColor];
         }
     }
     return self;
@@ -58,21 +73,33 @@
 
 - (IBAction)avatarTapped:(id)sender
 {
-	NSLog(@"tap");
-	if (isPopup) {
-		[UIView beginAnimations:nil context:nil];
-		[UIView setAnimationDuration:0.5];
+	NSLog(@"avatar tap");
+	[m_delegate timelineCell:self touchedWithEvent:kTimelineCellEventAvatarTapped];
+}
+
+- (IBAction)cellTapped:(id)sender
+{
+	[m_delegate timelineCell:self touchedWithEvent:kTimelineCellEventCellTapped];
+}
+
+- (void)showPopup:(BOOL)animated
+{
+	popup.delegate = self;
+	[popup updateView];
+	if (animated) {
 		popup.frame = self.avatar.frame;
-		[UIView commitAnimations];
-		isPopup = NO;
-	} else {
-		[m_delegate cell:self touchedWithAction:kPopup];
+		[self.cellView addSubview:popup.view];
+		[self.cellView insertSubview:avatar aboveSubview:popup.view];
 		[UIView beginAnimations:nil context:nil];
 		[UIView setAnimationDuration:0.5];
-		popup.frame = CGRectMake(self.avatar.frame.origin.x, self.avatar.frame.origin.y, 300, 50);
+		popup.frame = CGRectMake(self.avatar.frame.origin.x, self.avatar.frame.origin.x, 300, 50);
 		[UIView commitAnimations];
-		isPopup = YES;
+	} else {
+		[self.cellView addSubview:popup.view];
+		[self.cellView insertSubview:avatar aboveSubview:popup.view];
+		popup.frame = CGRectMake(self.avatar.frame.origin.x, self.avatar.frame.origin.x, 300, 50);
 	}
+	isPopup = YES;
 }
 
 - (void)hidePopup:(BOOL)animated
@@ -82,11 +109,77 @@
 		[UIView setAnimationDuration:0.5];
 		popup.frame = self.avatar.frame;
 		[UIView commitAnimations];
-		isPopup = NO;
+		
 	} else {
 		popup.frame = self.avatar.frame;
-		isPopup = NO;
+		[popup.view removeFromSuperview];
+		//popup.delegate = nil;
+		popup = nil;
 	}
+	isPopup = NO;
+}
+
+- (void)updateView
+{
+	self.content.text = self.plurk.contentRaw;
+	
+	
+	NSString *qualifierTranslated = self.plurk.qualifierTranslated;
+	NSString *qualifierString = self.plurk.qualifier;
+	
+	
+	if ([qualifierTranslated isEqualToString:@""]) {
+		self.qualifier.hidden = YES;
+	} else {
+		NSString *firstCapChar = [[qualifierTranslated substringToIndex:1] capitalizedString];
+		NSString *cappedString = [qualifierTranslated stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:firstCapChar];
+		self.qualifier.text = cappedString;
+		self.qualifier.hidden = NO;
+		self.qualifier.backgroundColor = (UIColor *)[[ColorsProvider sharedInstance]
+													 colorForKey:qualifierString
+													 inPalette:@"qualifierPalette"];
+	}
+	if ([self.plurk.responseCount intValue] == 0) {
+		self.responseCount.hidden = YES;
+	} else {
+		self.responseCount.hidden = NO;
+		self.responseCount.text = [self.plurk.responseCount stringValue];
+		if ([self.plurk.responseCount isEqualToNumber:self.plurk.responsesSeen]) {
+			self.responseCount.backgroundColor = [UIColor colorWithRed:0
+																 green:0
+																  blue:0
+																 alpha:0.25];
+		} else {
+			self.responseCount.backgroundColor = [UIColor colorWithRed:0
+																 green:0
+																  blue:0
+																 alpha:0.75];
+		}
+	}
+	
+	
+}
+
+#pragma mark - Popup Delegate
+
+- (BOOL)isMuted
+{
+	return ([self.plurk.isUnread intValue] == 2) ? YES : NO;
+}
+
+- (BOOL)isPromoted
+{
+	return NO;
+}
+
+- (BOOL)isReplurked
+{
+	return [self.plurk.replurked boolValue];
+}
+
+- (BOOL)isLiked
+{
+	return [self.plurk.favorite boolValue];
 }
 
 @end

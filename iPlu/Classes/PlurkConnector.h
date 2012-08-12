@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#define APP_Timeline_getPlurk @"APP/Timeline/getPlurk"
+#define APP_Timeline_getPlurks @"APP/Timeline/getPlurks"
+#define APP_Timeline_getPublicPlurks @"APP/Timeline/getPublicPlurks"
+
+#define APP_Profile_getPublicProfile @"APP/Profile/getPublicProfile"
+#define APP_Profile_getOwnProfile @"APP/Profile/getOwnProfile"
+
 #define APPKEY @"tG0lk2XlB63h"
 #define APPSECRET @"Zgtcy0XOCSvPUcAHvF9fDfLfT7yOn48k"
 #define _oauth_signature_method @"oauth_signature_method"
@@ -17,6 +24,8 @@
 #define _oauth_version @"oauth_version"
 #define _oauth_timestamp @"oauth_timestamp"
 #define _oauth_token @"oauth_token"
+#define _plurk_id @"plurk_id"
+#define _user_id @"user_id"
 
 typedef enum {
 	kHTMLError = 0,

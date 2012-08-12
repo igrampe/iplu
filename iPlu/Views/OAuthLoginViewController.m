@@ -45,4 +45,9 @@
 	}
 }
 
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+	[HUD hide:YES afterDelay:0];
+}
+
 @end

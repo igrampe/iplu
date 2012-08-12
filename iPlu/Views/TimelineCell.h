@@ -8,20 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "PlurkData.h"
+#import "Popup.h"
 
 typedef enum {
-	kPopup = 0,
-	kShare = 1
-}TimelineCellAction;
+	kTimelineCellEventAvatarTapped = 0,
+	kTimelineCellEventCellTapped = 1,
+	kShare = 2
+}TimelineCellEvent;
+
+@class TimelineCell;
 
 @protocol TimelineCellDelegate <NSObject>
 
-- (void)cell:(UITableViewCell *)cell touchedWithAction:(TimelineCellAction)action;
+- (void)timelineCell:(TimelineCell *)timelineCell touchedWithEvent:(TimelineCellEvent)event;
 
 @end
 
-@interface TimelineCell : UITableViewCell <UIGestureRecognizerDelegate> {
-	BOOL isPopup;
+@interface TimelineCell : UITableViewCell <PopupDelegate> {
 	id<TimelineCellDelegate> m_delegate;
 }
 
@@ -30,17 +33,26 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UILabel *name;
 @property (nonatomic, retain) IBOutlet UITextView *content;
 @property (nonatomic, retain) IBOutlet UILabel *qualifier;
-@property (nonatomic, retain) IBOutlet UIGestureRecognizer *avatarTapRecognizer;
-@property (nonatomic, retain) IBOutlet UIView *popup;
+@property (nonatomic, retain) IBOutlet UILabel *responseCount;
+
+@property (nonatomic, retain) IBOutlet UITapGestureRecognizer *avatarTapRecognizer;
+@property (nonatomic, retain) IBOutlet UITapGestureRecognizer *cellTapRecognizer;
+
+@property (nonatomic, retain) Popup *popup;
+@property (nonatomic, assign) BOOL isPopup;
 
 @property (nonatomic, retain) PlurkData *plurk;
 @property (nonatomic, assign) id<TimelineCellDelegate> delegate;
 
 - (IBAction)avatarTapped:(id)sender;
+- (IBAction)cellTapped:(id)sender;
+
+- (void)updateView;
 
 - (CGFloat)heightForContent;
 
 - (void)hidePopup:(BOOL)animated;
+- (void)showPopup:(BOOL)animated;
 
 @end
 

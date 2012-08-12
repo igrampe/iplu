@@ -22,21 +22,25 @@ typedef enum {
 } RelationshipType;
 
 @interface UserData : NSObject {
-	int ID;
-	NSString *nickName;
-	NSString *displayName;
-	int hasProfileImage;
-	NSString *avatar;
-	NSString *location;
-	NSString *defaultLang;
-	NSString *dateOfBirth;
-	int bdayPrivacy;
-	NSString *fullName;
-	int gender;
-	NSString *pageTitle;
-	float karma;
-	int recruited;
-	RelationshipType relationship;
+	
 }
+
+@property (nonatomic, retain) NSNumber *userId;
+@property (nonatomic, retain) NSString *nickName;
+@property (nonatomic, retain) NSString *displayName;
+@property (nonatomic, retain) NSNumber *hasProfileImage;
+@property (nonatomic, retain) NSString *avatar;
+@property (nonatomic, retain) NSString *location;
+@property (nonatomic, retain) NSString *defaultLang;
+@property (nonatomic, retain) NSString *dateOfBirth;
+@property (nonatomic, retain) NSNumber *bdayPrivacy;
+@property (nonatomic, retain) NSString *fullName;
+@property (nonatomic, retain) NSNumber *gender;
+@property (nonatomic, retain) NSString *pageTitle;
+@property (nonatomic, retain) NSNumber *karma;
+@property (nonatomic, retain) NSNumber *recruited;
+@property (nonatomic, retain) NSNumber *relationship;
+
+- (id)initWithDict:(NSDictionary *)dict;
 
 @end
