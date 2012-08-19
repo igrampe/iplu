@@ -61,6 +61,8 @@
 - (void)dealloc
 {
 	self.timelineView = nil;
+	[m_menuButton release];
+	[m_menuPopup release];
 	[super dealloc];
 }
 
@@ -277,7 +279,8 @@
 		[dict setValue:@"1.0" forKey:_oauth_version];
 		if (offset) {
 			NSString *pluDate = [PlurkConnector pluDateWithDate:[PlurkConnector dateWithPluDate:offset]];
-			[dict setValue:pluDate forKey:_offset];
+			NSString *pluString = [pluDate stringByReplacingOccurrencesOfString:@":" withString:@"%3A"];
+			[dict setValue:pluString forKey:_offset];
 		}
 		if (limit) {
 			[dict setValue:[NSString stringWithFormat:@"%d",limit] forKey:_limit];

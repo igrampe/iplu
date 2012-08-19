@@ -119,6 +119,12 @@ static OAuthProvider *m_sharedInstance;
 			}
 			break;
 		case kBadRequest:
+			if ([command.command isEqualToString:OAuth_access_token]) {
+				[self getToken];
+			}
+			if ([command.command isEqualToString:OAuth_request_token]) {
+				[self getRequestToken];
+			}
 			break;
 		default:
 			break;

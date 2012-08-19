@@ -164,7 +164,6 @@ static PlurkConnector *m_sharedInstance;
 - (void)plurkCommand:(PlurkCommand *)command withParameters:(NSDictionary *)parameters delegate:(id<PlurkConnectorDelegate>)delegate
 {
 	NSString *apiUrl = [APIURL stringByAppendingFormat:@"%@",command.command];
-	if (parameters objectForKey:<#(id)#>)
 	NSString *normEncodedParameters = [parameters normalizedUrlEncoded];
 	NSString *baseString;
 	baseString = [@"GET&" stringByAppendingFormat:@"%@&%@",urlEncode(apiUrl),normEncodedParameters];
@@ -176,7 +175,21 @@ static PlurkConnector *m_sharedInstance;
 		secret = [APPSECRET stringByAppendingString:@"&"];
 	}
 	
-	NSString *urlString = [apiUrl stringByAppendingFormat:@"?%@&oauth_signature=%@", [parameters urlEncoded], urlEncode([OAHMAC_SHA1SignatureProvider signClearText:baseString withSecret:secret])];
+	NSString *urlString;
+	
+	if ([parameters objectForKey:_offset]) {
+		NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:parameters];
+		NSString *offsetString = [params objectForKey:_offset];
+		offsetString = [offsetString stringByReplacingOccurrencesOfString:@"%3A" withString:@":"];
+		
+		[params setValue:offsetString forKey:_offset];
+		
+		urlString = [apiUrl stringByAppendingFormat:@"?%@&oauth_signature=%@", [params urlEncoded], urlEncode([OAHMAC_SHA1SignatureProvider signClearText:baseString withSecret:secret])];
+	} else {
+		urlString = [apiUrl stringByAppendingFormat:@"?%@&oauth_signature=%@", [parameters urlEncoded], urlEncode([OAHMAC_SHA1SignatureProvider signClearText:baseString withSecret:secret])];
+	}
+
+	 
 	NSLog(@"\nsign %@ \nby secret %@", baseString, secret);
 	NSLog(@"send:\n%@",urlString);
 	
@@ -185,6 +198,7 @@ static PlurkConnector *m_sharedInstance;
 	m_delegate = delegate;
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	
 	PluConnection *connection = [[PluConnection alloc] initWithRequest:request command:command delegate:self];
 	
 	//NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -194,7 +208,12 @@ static PlurkConnector *m_sharedInstance;
 	}
 }
 
-#pragma mark - NSURLCOnnectionDelegate
+- (void)sendConnection:(NSDictionary *)dict
+{
+	
+}
+
+#pragma mark - NSURLConnectionDelegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
