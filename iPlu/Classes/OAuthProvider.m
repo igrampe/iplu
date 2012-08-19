@@ -55,7 +55,7 @@ static OAuthProvider *m_sharedInstance;
 	[m_parameters setValue:APPKEY forKey:_oauth_consumer_key];
 	[m_parameters setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
 	[m_parameters setValue:@"1.0" forKey:_oauth_version];
-	PlurkCommand *command = [[PlurkCommand alloc] initWithString:@"OAuth/request_token"];
+	PlurkCommand *command = [[PlurkCommand alloc] initWithString:OAuth_request_token];
 	[[PlurkConnector sharedInstance] plurkCommand:command withParameters:m_parameters delegate:self];
 }
 
@@ -81,25 +81,25 @@ static OAuthProvider *m_sharedInstance;
 	[m_parameters setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
 	[m_parameters setValue:timestampString forKey:_oauth_timestamp];
 	[m_parameters setValue:@"1.0" forKey:_oauth_version];
-	[m_parameters setValue:[[PlurkConnector sharedInstance] tokenKey] forKey:@"oauth_token"];
-	[m_parameters setValue:[[PlurkConnector sharedInstance] tokenSecret] forKey:@"oauth_token_secret"];
-	[m_parameters setValue:oauth_verifier forKey:@"oauth_verifier"];
-	PlurkCommand *command = [[PlurkCommand alloc] initWithString:@"OAuth/access_token"];
+	[m_parameters setValue:[[PlurkConnector sharedInstance] tokenKey] forKey:_oauth_token];
+	[m_parameters setValue:[[PlurkConnector sharedInstance] tokenSecret] forKey:_oauth_token_secret];
+	[m_parameters setValue:oauth_verifier forKey:_oauth_verifier];
+	PlurkCommand *command = [[PlurkCommand alloc] initWithString:OAuth_access_token];
 	[[PlurkConnector sharedInstance] plurkCommand:command withParameters:m_parameters delegate:self];
 }
 
 - (void)plurkCommand:(PlurkCommand *)command finishedWithResult:(NSDictionary *)result
 {
-	if ([command.command isEqualToString:@"OAuth/request_token"]) {
-		[[PlurkConnector sharedInstance] setTokenKey:[result objectForKey:@"oauth_token"]];
-		[[PlurkConnector sharedInstance] setTokenSecret:[result objectForKey:@"oauth_token_secret"]];
+	if ([command.command isEqualToString:OAuth_request_token]) {
+		[[PlurkConnector sharedInstance] setTokenKey:[result objectForKey:_oauth_token]];
+		[[PlurkConnector sharedInstance] setTokenSecret:[result objectForKey:_oauth_token_secret]];
 		m_tokenKey = [[PlurkConnector sharedInstance] tokenKey];
 		[m_viewController showLoginPage];
 	}
-	if ([command.command isEqualToString:@"OAuth/access_token"]) {
+	if ([command.command isEqualToString:OAuth_access_token]) {
 //		NSLog(@"Token: %@", result);
-		[[PlurkConnector sharedInstance] setTokenKey:[result objectForKey:@"oauth_token"]];
-		[[PlurkConnector sharedInstance] setTokenSecret:[result objectForKey:@"oauth_token_secret"]];
+		[[PlurkConnector sharedInstance] setTokenKey:[result objectForKey:_oauth_token]];
+		[[PlurkConnector sharedInstance] setTokenSecret:[result objectForKey:_oauth_token_secret]];
 		[AppSettingsHelper saveAccessTokenKey:[[PlurkConnector sharedInstance] tokenKey]
 									andSecret:[[PlurkConnector sharedInstance] tokenSecret]];
 		[m_viewController dismissModalViewControllerAnimated:YES];
@@ -111,9 +111,15 @@ static OAuthProvider *m_sharedInstance;
 {
 	switch (code) {
 		case kInvalidTimestamp:
-			[self resetToken];
+			if ([command.command isEqualToString:OAuth_access_token]) {
+				[self getToken];
+			}
+			if ([command.command isEqualToString:OAuth_request_token]) {
+				[self getRequestToken];
+			}
 			break;
-			
+		case kBadRequest:
+			break;
 		default:
 			break;
 	}

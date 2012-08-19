@@ -164,6 +164,7 @@ static PlurkConnector *m_sharedInstance;
 - (void)plurkCommand:(PlurkCommand *)command withParameters:(NSDictionary *)parameters delegate:(id<PlurkConnectorDelegate>)delegate
 {
 	NSString *apiUrl = [APIURL stringByAppendingFormat:@"%@",command.command];
+	if (parameters objectForKey:<#(id)#>)
 	NSString *normEncodedParameters = [parameters normalizedUrlEncoded];
 	NSString *baseString;
 	baseString = [@"GET&" stringByAppendingFormat:@"%@&%@",urlEncode(apiUrl),normEncodedParameters];
@@ -176,7 +177,7 @@ static PlurkConnector *m_sharedInstance;
 	}
 	
 	NSString *urlString = [apiUrl stringByAppendingFormat:@"?%@&oauth_signature=%@", [parameters urlEncoded], urlEncode([OAHMAC_SHA1SignatureProvider signClearText:baseString withSecret:secret])];
-//	NSLog(@"\nsign %@ \nby secret %@", baseString, secret);
+	NSLog(@"\nsign %@ \nby secret %@", baseString, secret);
 	NSLog(@"send:\n%@",urlString);
 	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];

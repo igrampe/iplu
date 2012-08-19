@@ -90,4 +90,15 @@
 	[super dealloc];
 }
 
+- (NSNumber *)timestamp
+{
+	NSDateFormatter* dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss ZZZ"];
+	NSDate *date = [dateFormatter dateFromString:posted];
+	NSTimeInterval timeInterval = [date timeIntervalSince1970];
+	NSNumber *timestamp = [NSNumber numberWithLong:timeInterval];
+	return timestamp;
+}
+
 @end

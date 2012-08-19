@@ -14,30 +14,37 @@
 #import "CacheProvider.h"
 #import "PlurkViewController.h"
 #import "ODRefreshControl.h"
+#import "MNMBottomPullToRefreshManager.h"
 
 @interface MainViewController : UIViewController
 <UITableViewDataSource,
 UITableViewDelegate,
 UIScrollViewDelegate,
-PlurkConnectorDelegate,
-OAuthDelegate,
+MNMBottomPullToRefreshManagerClient,
 MBProgressHUDDelegate,
 TimelineCellDelegate,
-CacheDelegate>{
+OAuthDelegate,
+CacheDelegate,
+PlurkConnectorDelegate>{
 
 	NSMutableArray *m_plurks;
 	NSMutableDictionary *m_users;
 	MBProgressHUD *HUD;
+	ODRefreshControl *m_refreshControl;
+	MNMBottomPullToRefreshManager *m_pullToRefreshManager;
+	
 	Popup *m_plurkPopup;
-	TimelineCell *m_selectedCell;
-	UIImageView *m_ownerAvatar;
 	Popup *m_menuPopup;
-	BOOL m_isMenuShowed;
-	NSMutableDictionary *m_parameters;
+	TimelineCell *m_selectedCell;
+	UIImageView *m_menuButton;
+	UILabel *m_filterLabel;
+	
 	UserData *m_ownProfile;
 	PlurkViewController *m_plurkViewController;
-	ODRefreshControl *m_refreshControl;
+	
+	BOOL m_isMenuShowed;
 	BOOL m_isUpdating;
+	int m_totalPlurksCount;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *timelineView;

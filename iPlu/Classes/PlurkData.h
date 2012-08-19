@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSNumber *plurkType;
 @property (nonatomic, retain) NSNumber *userId;
 @property (nonatomic, retain) NSNumber *ownerId;
-@property (nonatomic, retain) NSNumber *posted;
+@property (nonatomic, retain) NSString *posted;
 @property (nonatomic, retain) NSNumber *noComments;
 @property (nonatomic, retain) NSString *content;
 @property (nonatomic, retain) NSString *contentRaw;
@@ -36,5 +36,6 @@
 @property (nonatomic, retain) NSArray *replurkers;
 
 - (id)initWithDict:(NSDictionary *)dict;
+- (NSNumber *)timestamp;
 
 @end

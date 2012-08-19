@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530998C415D9A28000618000 /* MNMBottomPullToRefresh.strings in Resources */ = {isa = PBXBuildFile; fileRef = 530998BD15D9A28000618000 /* MNMBottomPullToRefresh.strings */; };
+		530998C515D9A28000618000 /* MNMBottomPullToRefreshArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 530998BE15D9A28000618000 /* MNMBottomPullToRefreshArrow.png */; };
+		530998C615D9A28000618000 /* MNMBottomPullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 530998BF15D9A28000618000 /* MNMBottomPullToRefreshArrow@2x.png */; };
+		530998C715D9A28000618000 /* MNMBottomPullToRefreshManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 530998C115D9A28000618000 /* MNMBottomPullToRefreshManager.m */; };
+		530998C815D9A28000618000 /* MNMBottomPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530998C315D9A28000618000 /* MNMBottomPullToRefreshView.m */; };
 		530F30F715D6A5F700E474A9 /* HorizontalPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530F30F615D6A5F700E474A9 /* HorizontalPopup.xib */; };
 		530F30FB15D6A65D00E474A9 /* Popup.m in Sources */ = {isa = PBXBuildFile; fileRef = 530F30FA15D6A65D00E474A9 /* Popup.m */; };
 		53616C7D15C7DD14002DB5C3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 53616C7C15C7DD14002DB5C3 /* MBProgressHUD.m */; };
@@ -105,6 +110,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		530998BD15D9A28000618000 /* MNMBottomPullToRefresh.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = MNMBottomPullToRefresh.strings; sourceTree = "<group>"; };
+		530998BE15D9A28000618000 /* MNMBottomPullToRefreshArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MNMBottomPullToRefreshArrow.png; sourceTree = "<group>"; };
+		530998BF15D9A28000618000 /* MNMBottomPullToRefreshArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MNMBottomPullToRefreshArrow@2x.png"; sourceTree = "<group>"; };
+		530998C015D9A28000618000 /* MNMBottomPullToRefreshManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMBottomPullToRefreshManager.h; sourceTree = "<group>"; };
+		530998C115D9A28000618000 /* MNMBottomPullToRefreshManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMBottomPullToRefreshManager.m; sourceTree = "<group>"; };
+		530998C215D9A28000618000 /* MNMBottomPullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMBottomPullToRefreshView.h; sourceTree = "<group>"; };
+		530998C315D9A28000618000 /* MNMBottomPullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMBottomPullToRefreshView.m; sourceTree = "<group>"; };
 		530F30F615D6A5F700E474A9 /* HorizontalPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalPopup.xib; sourceTree = "<group>"; };
 		530F30F915D6A65D00E474A9 /* Popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
 		530F30FA15D6A65D00E474A9 /* Popup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Popup.m; sourceTree = "<group>"; };
@@ -223,6 +235,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		530998BC15D9A28000618000 /* MNMBottomPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				530998BD15D9A28000618000 /* MNMBottomPullToRefresh.strings */,
+				530998BE15D9A28000618000 /* MNMBottomPullToRefreshArrow.png */,
+				530998BF15D9A28000618000 /* MNMBottomPullToRefreshArrow@2x.png */,
+				530998C015D9A28000618000 /* MNMBottomPullToRefreshManager.h */,
+				530998C115D9A28000618000 /* MNMBottomPullToRefreshManager.m */,
+				530998C215D9A28000618000 /* MNMBottomPullToRefreshView.h */,
+				530998C315D9A28000618000 /* MNMBottomPullToRefreshView.m */,
+			);
+			path = MNMBottomPullToRefresh;
+			sourceTree = "<group>";
+		};
 		53616C7A15C7DD14002DB5C3 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +291,7 @@
 		5385187C15C40CBA00E0CEDF /* iPlu */ = {
 			isa = PBXGroup;
 			children = (
+				530998BC15D9A28000618000 /* MNMBottomPullToRefresh */,
 				53EDA15E15D8581E001AA947 /* ODRefreshControl */,
 				53EDA15415D8513A001AA947 /* AGMedallionView */,
 				53A24FB215D39CA900FF5B4D /* iPlu.entitlements */,
@@ -552,6 +579,9 @@
 				53EDA0EB15D7C20B001AA947 /* default.gif in Resources */,
 				53EDA14F15D84746001AA947 /* PlurkViewController.xib in Resources */,
 				53EDA15915D8513A001AA947 /* sample.png in Resources */,
+				530998C415D9A28000618000 /* MNMBottomPullToRefresh.strings in Resources */,
+				530998C515D9A28000618000 /* MNMBottomPullToRefreshArrow.png in Resources */,
+				530998C615D9A28000618000 /* MNMBottomPullToRefreshArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +623,8 @@
 				53EDA14E15D84746001AA947 /* PlurkViewController.m in Sources */,
 				53EDA15815D8513A001AA947 /* AGMedallionView.m in Sources */,
 				53EDA16115D8581F001AA947 /* ODRefreshControl.m in Sources */,
+				530998C715D9A28000618000 /* MNMBottomPullToRefreshManager.m in Sources */,
+				530998C815D9A28000618000 /* MNMBottomPullToRefreshView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

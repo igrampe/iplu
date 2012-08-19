@@ -15,6 +15,9 @@
 #define APP_Profile_getPublicProfile @"APP/Profile/getPublicProfile"
 #define APP_Profile_getOwnProfile @"APP/Profile/getOwnProfile"
 
+#define OAuth_access_token @"OAuth/access_token"
+#define OAuth_request_token @"OAuth/request_token"
+
 #define APPKEY @"tG0lk2XlB63h"
 #define APPSECRET @"Zgtcy0XOCSvPUcAHvF9fDfLfT7yOn48k"
 #define _oauth_signature_method @"oauth_signature_method"
@@ -23,9 +26,13 @@
 #define _oauth_consumer_key @"oauth_consumer_key"
 #define _oauth_version @"oauth_version"
 #define _oauth_timestamp @"oauth_timestamp"
+#define _oauth_verifier @"oauth_verifier"
 #define _oauth_token @"oauth_token"
+#define _oauth_token_secret @"oauth_token_secret"
 #define _plurk_id @"plurk_id"
 #define _user_id @"user_id"
+#define _offset @"offset"
+#define _limit @"limit"
 
 typedef enum {
 	kHTMLError = 0,
