@@ -92,6 +92,7 @@ static NSString *urlEncode(id object)
 @interface PluConnection : NSURLConnection
 
 @property (nonatomic, retain) PlurkCommand *command;
+@property (nonatomic, assign) id<PlurkConnectorDelegate> sender;
 @property (nonatomic, retain) NSURLResponse *response;
 @property (nonatomic, retain) NSMutableData *data;
 @property (nonatomic, assign) long int totalFileSize;
@@ -102,7 +103,7 @@ static NSString *urlEncode(id object)
 
 @implementation PluConnection
 
-@synthesize response, data, totalFileSize;
+@synthesize command, sender, response, data, totalFileSize;
 
 - (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate
 {
@@ -190,7 +191,7 @@ static PlurkConnector *m_sharedInstance;
 	}
 
 	 
-	NSLog(@"\nsign %@ \nby secret %@", baseString, secret);
+//	NSLog(@"\nsign %@ \nby secret %@", baseString, secret);
 	NSLog(@"send:\n%@",urlString);
 	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
@@ -200,6 +201,7 @@ static PlurkConnector *m_sharedInstance;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
 	PluConnection *connection = [[PluConnection alloc] initWithRequest:request command:command delegate:self];
+	connection.sender = delegate;
 	
 	//NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
@@ -230,28 +232,50 @@ static PlurkConnector *m_sharedInstance;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	NSData *data = ((PluConnection *)connection).data;
+	[self performSelectorInBackground:@selector(parseRespondInBackground:) withObject:(PluConnection *)connection];
+	
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	NSLog(@"ERROR: %@",error);
+}
+
+- (void)parseRespondInBackground:(PluConnection *)connection
+{
+	NSAutoreleasePool *pool = [NSAutoreleasePool new];
+	NSData *data = connection.data;
+	id<PlurkConnectorDelegate> delegate = connection.sender;
 	
 	NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 	
 	NSLog(@"receive:\n%@", dataString);
 	
-	if ([((PluConnection *)connection).response.MIMEType isEqualToString:@"application/json"]) {
+	NSMutableDictionary *result = [[NSMutableDictionary new] autorelease];
+	
+	if ([connection.response.MIMEType isEqualToString:@"application/json"]) {
 		SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
 		NSDictionary *jsonObject = [jsonParser objectWithData:data];
 		[jsonParser release];
 		jsonParser = nil;
-		[m_delegate plurkCommand:((PluConnection *)connection).command finishedWithResult:jsonObject];
+		[result setValue:connection forKey:_connection];
+		[result setValue:jsonObject forKey:_result];
+		[self performSelectorOnMainThread:@selector(parseSuccesComplete:) withObject:result waitUntilDone:YES];
 	}
 	if ([((PluConnection *)connection).response.MIMEType isEqualToString:@"text/html"]) {
 		if ([dataString rangeOfString:@"DOCTYPE"].length > 0) {
 			int codePosition = ([dataString rangeOfString:@"<title>"].location + [dataString rangeOfString:@"<title>"].length);
 			NSString *errorCodeString = [[dataString substringFromIndex:codePosition] substringToIndex:3];
-			[m_delegate plurkCommandFailed:((PluConnection *)connection).command withErrorCode:[errorCodeString intValue]];
+			[result setValue:connection forKey:_connection];
+			[result setValue:errorCodeString forKey:_errorCode];
+			[self performSelectorOnMainThread:@selector(parseErrorComplete:) withObject:result waitUntilDone:YES];
 		} else {
 			if ([dataString rangeOfString:@"error_text"].length > 0) {
 				NSString *errorCodeString = [[dataString substringFromIndex:16] substringToIndex:5];
-				[m_delegate plurkCommandFailed:((PluConnection *)connection).command withErrorCode:[errorCodeString intValue]];
+				[result setValue:connection forKey:_connection];
+				[result setValue:errorCodeString forKey:_result];
+				[self performSelectorOnMainThread:@selector(parseErrorComplete:) withObject:result waitUntilDone:YES];
 			} else {
 				NSMutableDictionary *object = [NSMutableDictionary new];
 				NSArray *parameters = [dataString componentsSeparatedByString:@"&"];
@@ -259,17 +283,29 @@ static PlurkConnector *m_sharedInstance;
 					NSArray *keyValue = [i componentsSeparatedByString:@"="];
 					[object setValue:[keyValue lastObject] forKey:[keyValue objectAtIndex:0]];
 				}
-				[m_delegate plurkCommand:((PluConnection *)connection).command finishedWithResult:object];
+				[result setValue:connection forKey:_connection];
+				[result setValue:object forKey:_result];
+				[self performSelectorOnMainThread:@selector(parseSuccesComplete:) withObject:result waitUntilDone:YES];
 			}
 		}
-		
 	}
+	[pool drain];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+- (void)parseSuccesComplete:(NSDictionary *)object
 {
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	NSLog(@"ERROR: %@",error);
+	PluConnection *connection = [object objectForKey:_connection];
+	NSDictionary *result = [object objectForKey:_result];
+	id<PlurkConnectorDelegate> delegate = connection.sender;
+	[delegate plurkCommand:connection.command finishedWithResult:result];
+}
+
+- (void)parseErrorComplete:(NSDictionary *)object
+{
+	PluConnection *connection = [object objectForKey:_connection];
+	NSString *errorCode = [object objectForKey:_errorCode];
+	id<PlurkConnectorDelegate> delegate = connection.sender;
+	[delegate plurkCommandFailed:connection.command withErrorCode:[errorCode intValue]];
 }
 
 + (NSDate *)dateWithPluDate:(NSString *)pluDate

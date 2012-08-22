@@ -54,6 +54,13 @@
 		
 		m_isUpdating = NO;
 		m_totalPlurksCount = 0;
+		
+		m_offset = nil;
+		m_limit = 0;
+		m_filter = nil;
+		m_favorersDetail = 0;
+		m_limitedDetail = 0;
+		m_replurkersDetail = 0;
     }
     return self;
 }
@@ -97,7 +104,12 @@
 		[OAuthProvider sharedInstance].delegate = self;
 		[[OAuthProvider sharedInstance] getToken];
 	} else {
-		[self updateTimelineWithOffset:nil limit:0];
+		[self updateTimelineWithOffset:m_offset
+								 limit:m_limit
+								filter:m_filter
+						favorersDetail:m_favorersDetail
+						 limitedDetail:m_limitedDetail
+					  replurkersDetail:m_replurkersDetail];
 	}
 }
 
@@ -205,14 +217,24 @@
 
 - (void)MNMBottomPullToRefreshManagerClientReloadTable
 {
-	[self updateTimelineWithOffset:[(PlurkData *)[m_plurks lastObject] posted] limit:m_totalPlurksCount + 20];
+	[self updateTimelineWithOffset:[(PlurkData *)[m_plurks lastObject] posted]
+							 limit:m_limit
+							filter:m_filter
+					favorersDetail:m_favorersDetail
+					 limitedDetail:m_limitedDetail
+				  replurkersDetail:m_replurkersDetail];
 }
 
 #pragma mark - ODRefreshControl
 
 - (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
 {
-	[self updateTimelineWithOffset:nil limit:20];
+	[self updateTimelineWithOffset:m_offset
+							 limit:m_limit
+							filter:m_filter
+					favorersDetail:m_favorersDetail
+					 limitedDetail:m_limitedDetail
+				  replurkersDetail:m_replurkersDetail];
 }
 
 #pragma mark - MBProgressHUD Delegate
@@ -245,76 +267,79 @@
 
 - (void)getOwnProfile
 {
-	NSMutableDictionary *dict = [NSMutableDictionary new];
+	NSMutableDictionary *parameters = [[NSMutableDictionary new] autorelease];
 	NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
 	NSNumber *timestampObject = [NSNumber numberWithDouble:timestamp];
 	NSString *timestampString = [NSString stringWithFormat:@"%d",[timestampObject intValue]];
 	srand (time(NULL));
 	NSString *onceString = [NSString stringWithFormat:@"%d",rand()%1000000000];
-	[dict setValue:onceString forKey:_oauth_nonce];
-	[dict setValue:timestampString forKey:_oauth_timestamp];
-	[dict setValue:APPKEY forKey:_oauth_consumer_key];
-	[dict setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
-	[dict setValue:@"1.0" forKey:_oauth_version];
-	[dict setValue:[[PlurkConnector sharedInstance] tokenKey] forKey:_oauth_token];
+	[parameters setValue:onceString forKey:_oauth_nonce];
+	[parameters setValue:timestampString forKey:_oauth_timestamp];
+	[parameters setValue:APPKEY forKey:_oauth_consumer_key];
+	[parameters setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
+	[parameters setValue:@"1.0" forKey:_oauth_version];
+	[parameters setValue:[[PlurkConnector sharedInstance] tokenKey] forKey:_oauth_token];
 	PlurkCommand *command = [[PlurkCommand alloc] initWithString:APP_Profile_getOwnProfile];
-	[[PlurkConnector sharedInstance] plurkCommand:command withParameters:dict delegate:self];
+	[[PlurkConnector sharedInstance] plurkCommand:command withParameters:parameters delegate:self];
 }
+
+//offset:
+//	Return plurks older than offset, formatted as 2009-6-20T21:55:34.
+//limit:
+//	How many plurks should be returned? Default is 20.
+//filter:
+//	Can be only_user, only_responded, only_private or only_favorite
+//favorers_detail:
+//	If true, detailed users information about all favorers of all plurks will be included into "plurk_users"
+//limited_detail:
+//	If true, detailed users information about all private plurks' recepients will be included into "plurk_users"
+//replurkers_detail:
+//	If true, detailed users information about all replurkers of all plurks will be included into "plurk_users"
 
 - (void)updateTimelineWithOffset:(NSString *)offset
 						   limit:(int)limit
-{
-	if (!m_isUpdating) {
-		m_isUpdating = YES;
-		NSMutableDictionary *dict = [NSMutableDictionary new];
-		NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
-		NSNumber *timestampObject = [NSNumber numberWithDouble:timestamp];
-		NSString *timestampString = [NSString stringWithFormat:@"%d",[timestampObject intValue]];
-		srand (time(NULL));
-		NSString *onceString = [NSString stringWithFormat:@"%d",rand()%1000000000];
-		[dict setValue:onceString forKey:_oauth_nonce];
-		[dict setValue:timestampString forKey:_oauth_timestamp];
-		[dict setValue:APPKEY forKey:_oauth_consumer_key];
-		[dict setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
-		[dict setValue:@"1.0" forKey:_oauth_version];
-		if (offset) {
-			NSString *pluDate = [PlurkConnector pluDateWithDate:[PlurkConnector dateWithPluDate:offset]];
-			NSString *pluString = [pluDate stringByReplacingOccurrencesOfString:@":" withString:@"%3A"];
-			[dict setValue:pluString forKey:_offset];
-		}
-		if (limit) {
-			[dict setValue:[NSString stringWithFormat:@"%d",limit] forKey:_limit];
-		}
-		[dict setValue:[[PlurkConnector sharedInstance] tokenKey] forKey:_oauth_token];
-		PlurkCommand *command = [[PlurkCommand alloc] initWithString:APP_Timeline_getPlurks];
-		[[PlurkConnector sharedInstance] plurkCommand:command withParameters:dict delegate:self];
-	}
-}
-
-- (void)updateTimelineWithOffset:(NSString *)offset
-						   limit:(int)limit
-				 favorersDetails:(int)favorersDetails
+						  filter:(NSString *)filter
+				  favorersDetail:(int)favorersDetail
 				   limitedDetail:(int)limitedDetail
 				replurkersDetail:(int)replurkersDetail
 {
 	if (!m_isUpdating) {
 		m_isUpdating = YES;
-		NSMutableDictionary *dict = [NSMutableDictionary new];
+		NSMutableDictionary *parameters = [[NSMutableDictionary new] autorelease];
 		NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
 		NSNumber *timestampObject = [NSNumber numberWithDouble:timestamp];
 		NSString *timestampString = [NSString stringWithFormat:@"%d",[timestampObject intValue]];
 		srand (time(NULL));
 		NSString *onceString = [NSString stringWithFormat:@"%d",rand()%1000000000];
-		[dict setValue:onceString forKey:_oauth_nonce];
-		[dict setValue:timestampString forKey:_oauth_timestamp];
-		[dict setValue:APPKEY forKey:_oauth_consumer_key];
-		[dict setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
-		[dict setValue:@"1.0" forKey:_oauth_version];
-		[dict setValue:[[PlurkConnector sharedInstance] tokenKey] forKey:_oauth_token];
+		[parameters setValue:onceString forKey:_oauth_nonce];
+		[parameters setValue:timestampString forKey:_oauth_timestamp];
+		[parameters setValue:APPKEY forKey:_oauth_consumer_key];
+		[parameters setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
+		[parameters setValue:@"1.0" forKey:_oauth_version];
+		[parameters setValue:[[PlurkConnector sharedInstance] tokenKey] forKey:_oauth_token];
+		if (offset) {
+			NSString *pluDate = [PlurkConnector pluDateWithDate:[PlurkConnector dateWithPluDate:offset]];
+			NSString *pluString = [pluDate stringByReplacingOccurrencesOfString:@":" withString:@"%3A"];
+			[parameters setValue:pluString forKey:_offset];
+		}
+		if (limit) {
+			[parameters setValue:[NSString stringWithFormat:@"%d",limit] forKey:_limit];
+		}
+		if (filter) {
+			[parameters setValue:filter forKey:_filter];
+		}
+		if (favorersDetail) {
+			[parameters setValue:@"1" forKey:_favorersDetail];
+		}
+		if (limitedDetail) {
+			[parameters setValue:@"1" forKey:_limitedDetail];
+		}
+		if (replurkersDetail) {
+			[parameters setValue:@"1" forKey:_replurkersDetail];
+		}
 		PlurkCommand *command = [[PlurkCommand alloc] initWithString:APP_Timeline_getPlurks];
-		[[PlurkConnector sharedInstance] plurkCommand:command withParameters:dict delegate:self];
+		[[PlurkConnector sharedInstance] plurkCommand:command withParameters:parameters delegate:self];
 	}
-	
 }
 
 #pragma mark - PlurkConnector Delegate
@@ -337,7 +362,12 @@
 				[self getOwnProfile];
 			}
 			if ([command.command isEqualToString:APP_Timeline_getPlurks]) {
-				[self updateTimelineWithOffset:nil limit:0];
+				[self updateTimelineWithOffset:m_offset
+										 limit:m_limit
+										filter:m_filter
+								favorersDetail:m_favorersDetail
+								 limitedDetail:m_limitedDetail
+							  replurkersDetail:m_replurkersDetail];
 			}
 			break;
 		default:

@@ -34,6 +34,17 @@
 #define _offset @"offset"
 #define _limit @"limit"
 
+#define _parameters @"parameters"
+#define _command @"command"
+#define _filter @"filter"
+#define _favorersDetail @"favorersDetail"
+#define _replurkersDetail @"replurkersDetail"
+#define _limitedDetail @"limitedDetail"
+
+#define _connection @"connection"
+#define _result @"result"
+#define _errorCode @"errorCode"
+
 typedef enum {
 	kHTMLError = 0,
 	kInvalidToken = 1,

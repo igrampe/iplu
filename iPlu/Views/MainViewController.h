@@ -45,6 +45,14 @@ PlurkConnectorDelegate>{
 	BOOL m_isMenuShowed;
 	BOOL m_isUpdating;
 	int m_totalPlurksCount;
+	
+	NSString *m_offset;
+	int m_limit;
+	NSString *m_filter;
+	int m_favorersDetail;
+	int m_limitedDetail;
+	int m_replurkersDetail;
+	
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *timelineView;
