@@ -217,7 +217,7 @@
 
 - (void)MNMBottomPullToRefreshManagerClientReloadTable
 {
-	[self updateTimelineWithOffset:[(PlurkData *)[m_plurks lastObject] posted]
+	[self updateTimelineWithOffset:m_offset
 							 limit:m_limit
 							filter:m_filter
 					favorersDetail:m_favorersDetail
@@ -250,8 +250,8 @@
 - (void)cacheUpdated
 {
 	[self.timelineView reloadData];
-	if (m_ownProfile) {
-		m_menuButton.image = [[CacheProvider sharedInstance] getImageByUser:m_ownProfile];
+	if (m_ownerProfile) {
+		m_menuButton.image = [[CacheProvider sharedInstance] getImageByUser:m_ownerProfile];
 	}
 	
 }
@@ -262,7 +262,7 @@
 	[self.timelineView reloadData];
 	[m_refreshControl endRefreshing];
 	[m_pullToRefreshManager tableViewReloadFinished];
-	
+	[self getOwnProfile];
 }
 
 - (void)getOwnProfile
@@ -395,6 +395,7 @@
 		NSSortDescriptor *sortOrder = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending: NO];
 		[m_plurks sortUsingDescriptors:[NSArray arrayWithObject:sortOrder]];
 		m_totalPlurksCount = [m_plurks count];
+		m_offset = [(PlurkData *)[m_plurks lastObject] posted];
 		NSDictionary *users = [(NSDictionary *)result objectForKey:@"plurk_users"];
 		for (NSString *i in [users allKeys]) {
 			UserData *user = [[UserData alloc] initWithDict:[users objectForKey:i]];
@@ -404,9 +405,9 @@
 		[self timelineUpdated];
 	}
 	if ([command.command isEqualToString:APP_Profile_getOwnProfile]) {
-		m_ownProfile = [[UserData alloc] initWithDict:[result objectForKey:@"user_info"]];
-		self.title = m_ownProfile.displayName;
-		m_menuButton.image = [[CacheProvider sharedInstance] getImageByUser:m_ownProfile];
+		m_ownerProfile = [[UserData alloc] initWithDict:[result objectForKey:@"user_info"]];
+		self.title = m_ownerProfile.displayName;
+		m_menuButton.image = [[CacheProvider sharedInstance] getImageByUser:m_ownerProfile];
 		
 		[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[[result objectForKey:@"unread_count"] intValue]];
 

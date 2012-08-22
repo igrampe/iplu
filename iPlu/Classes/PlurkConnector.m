@@ -245,11 +245,9 @@ static PlurkConnector *m_sharedInstance;
 - (void)parseRespondInBackground:(PluConnection *)connection
 {
 	NSAutoreleasePool *pool = [NSAutoreleasePool new];
+	
 	NSData *data = connection.data;
-	id<PlurkConnectorDelegate> delegate = connection.sender;
-	
 	NSString *dataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-	
 	NSLog(@"receive:\n%@", dataString);
 	
 	NSMutableDictionary *result = [[NSMutableDictionary new] autorelease];
@@ -289,6 +287,7 @@ static PlurkConnector *m_sharedInstance;
 			}
 		}
 	}
+	
 	[pool drain];
 }
 

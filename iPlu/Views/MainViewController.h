@@ -39,7 +39,7 @@ PlurkConnectorDelegate>{
 	UIImageView *m_menuButton;
 	UILabel *m_filterLabel;
 	
-	UserData *m_ownProfile;
+	UserData *m_ownerProfile;
 	PlurkViewController *m_plurkViewController;
 	
 	BOOL m_isMenuShowed;
