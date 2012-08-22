@@ -221,7 +221,7 @@ static PlurkConnector *m_sharedInstance;
 {
 	((PluConnection *)connection).response = [response retain];
 	((PluConnection *)connection).totalFileSize = response.expectedContentLength;
-//	NSLog(@"%@",response.MIMEType);
+	NSLog(@"%@",response.MIMEType);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -257,9 +257,16 @@ static PlurkConnector *m_sharedInstance;
 		NSDictionary *jsonObject = [jsonParser objectWithData:data];
 		[jsonParser release];
 		jsonParser = nil;
-		[result setValue:connection forKey:_connection];
-		[result setValue:jsonObject forKey:_result];
-		[self performSelectorOnMainThread:@selector(parseSuccesComplete:) withObject:result waitUntilDone:YES];
+		if ([jsonObject objectForKey:@"error_text"]) {
+			NSString *errorCodeString = [[dataString substringFromIndex:1] substringToIndex:5];
+			[result setValue:connection forKey:_connection];
+			[result setValue:errorCodeString forKey:_errorCode];
+			[self performSelectorOnMainThread:@selector(parseErrorComplete:) withObject:result waitUntilDone:YES];
+		} else {
+			[result setValue:connection forKey:_connection];
+			[result setValue:jsonObject forKey:_result];
+			[self performSelectorOnMainThread:@selector(parseSuccesComplete:) withObject:result waitUntilDone:YES];
+		}
 	}
 	if ([((PluConnection *)connection).response.MIMEType isEqualToString:@"text/html"]) {
 		if ([dataString rangeOfString:@"DOCTYPE"].length > 0) {
@@ -272,7 +279,7 @@ static PlurkConnector *m_sharedInstance;
 			if ([dataString rangeOfString:@"error_text"].length > 0) {
 				NSString *errorCodeString = [[dataString substringFromIndex:16] substringToIndex:5];
 				[result setValue:connection forKey:_connection];
-				[result setValue:errorCodeString forKey:_result];
+				[result setValue:errorCodeString forKey:_errorCode];
 				[self performSelectorOnMainThread:@selector(parseErrorComplete:) withObject:result waitUntilDone:YES];
 			} else {
 				NSMutableDictionary *object = [NSMutableDictionary new];

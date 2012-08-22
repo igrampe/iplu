@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#pragma mark - API Methods
+
 #define APP_Timeline_getPlurk @"APP/Timeline/getPlurk"
 #define APP_Timeline_getPlurks @"APP/Timeline/getPlurks"
 #define APP_Timeline_getPublicPlurks @"APP/Timeline/getPublicPlurks"
@@ -15,11 +17,16 @@
 #define APP_Profile_getPublicProfile @"APP/Profile/getPublicProfile"
 #define APP_Profile_getOwnProfile @"APP/Profile/getOwnProfile"
 
+#define APP_Responses_get @"APP/Responses/get"
+
 #define OAuth_access_token @"OAuth/access_token"
 #define OAuth_request_token @"OAuth/request_token"
 
 #define APPKEY @"tG0lk2XlB63h"
 #define APPSECRET @"Zgtcy0XOCSvPUcAHvF9fDfLfT7yOn48k"
+
+#pragma mark - API Keys
+
 #define _oauth_signature_method @"oauth_signature_method"
 #define _HMAC_SHA1 @"HMAC-SHA1"
 #define _oauth_nonce @"oauth_nonce"
@@ -29,21 +36,27 @@
 #define _oauth_verifier @"oauth_verifier"
 #define _oauth_token @"oauth_token"
 #define _oauth_token_secret @"oauth_token_secret"
+
 #define _plurk_id @"plurk_id"
 #define _user_id @"user_id"
 #define _offset @"offset"
 #define _limit @"limit"
 
+#define _filter @"filter"
+#define _favorersDetail @"favorers_detail"
+#define _replurkersDetail @"replurkers_detail"
+#define _limitedDetail @"limited_detail"
+
+#define _fromResponse @"from_response"
+
+#pragma mark - Parse Keys
+
 #define _parameters @"parameters"
 #define _command @"command"
-#define _filter @"filter"
-#define _favorersDetail @"favorersDetail"
-#define _replurkersDetail @"replurkersDetail"
-#define _limitedDetail @"limitedDetail"
-
 #define _connection @"connection"
 #define _result @"result"
 #define _errorCode @"errorCode"
+
 
 typedef enum {
 	kHTMLError = 0,

@@ -10,15 +10,38 @@
 
 @implementation Popup
 
-@synthesize view;
-@synthesize buttonUser;
-@synthesize buttonLike;
-@synthesize buttonReplurk;
-@synthesize buttonPromote;
+@synthesize view = m_view;
+@synthesize buttons = m_buttons;
+
+@synthesize frame = m_frame;
+@synthesize delegate = m_delegate;
 @synthesize buttonMute;
 
-@synthesize frame;
-@synthesize delegate = m_delegate;
+- (id)initWithOrientation:(PopupOrientation)orientation
+{
+	self = [super init];
+	if (self) {
+		m_view = [[UIView alloc] init];
+		[m_view.layer setMasksToBounds:YES];
+		[m_view.layer setCornerRadius:25];
+		m_buttons = [NSMutableArray new];
+		if (orientation == kPopupHorizontalOrientation) {
+			m_width = 300;
+			m_height = 50;
+		} else {
+			m_width = 50;
+			m_height = 300;
+		}
+	}
+	return self;
+}
+
+- (void)dealloc
+{
+	[m_buttons release];
+	[m_view release];
+	[super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
 {
@@ -29,26 +52,24 @@
                                           owner:self
                                         options:nil];
             NSAssert(self.view != nil, @"NIB file loaded but content property not set.");
-			[view.layer setMasksToBounds:YES];
-			[view.layer setCornerRadius:25];
+			[m_view.layer setMasksToBounds:YES];
+			[m_view.layer setCornerRadius:25];
         }
     }
     return self;
 }
 
-- (void)setFrame:(CGRect)_frame
+- (void)setFrame:(CGRect)frame
 {
-	self.view.frame = _frame;
+	m_frame = frame;
+	m_width = frame.size.width;
+	m_height = frame.size.height;
+	self.view.frame = frame;
 }
 
 - (CGRect)frame
 {
-	return self.view.frame;
-}
-
-- (IBAction)userTapped:(id)sender
-{
-	
+	return m_frame;
 }
 
 - (IBAction)muteTapped:(id)sender
@@ -60,39 +81,14 @@
 	}
 }
 
-- (IBAction)likeTapped:(id)sender
-{
-	if (((UIButton *)sender).selected) {
-		((UIButton *)sender).selected = NO;
-	} else {
-		((UIButton *)sender).selected = YES;
-	}
-}
-
-- (IBAction)replurkTapped:(id)sender
-{
-	if (((UIButton *)sender).selected) {
-		((UIButton *)sender).selected = NO;
-	} else {
-		((UIButton *)sender).selected = YES;
-	}
-}
-
-- (IBAction)promoteTapped:(id)sender
-{
-	if (((UIButton *)sender).selected) {
-		((UIButton *)sender).selected = NO;
-	} else {
-		((UIButton *)sender).selected = YES;
-	}
-}
-
 - (void)updateView
 {
-	buttonMute.selected = [m_delegate isMuted];
-	buttonPromote.selected = [m_delegate isPromoted];
-	buttonReplurk.selected = [m_delegate isReplurked];
-	buttonLike.selected = [m_delegate isLiked];
+	self.buttonMute.selected = [m_delegate isMuted];
+}
+
+- (void)buttonTouched:(UIControl *)sender
+{
+	
 }
 
 @end

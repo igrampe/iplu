@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
+typedef enum {
+	kPopupHorizontalOrientation = 0,
+	kPopupVerticalOrientation
+} PopupOrientation;
+
 @protocol PopupDelegate <NSObject>
 
 - (BOOL)isMuted;
@@ -20,26 +25,27 @@
 
 @interface Popup : NSObject {
 	id<PopupDelegate> m_delegate;
+	UIView *m_view;
+	CGFloat m_width;
+	CGFloat m_height;
+	CGRect m_frame;
+	NSMutableArray *m_buttons;
 }
 
+@property (nonatomic, assign) id<PopupDelegate> delegate;
+@property (nonatomic, retain) NSMutableArray *buttons;
+
 @property (nonatomic, retain) IBOutlet UIView *view;
-@property (nonatomic, retain) IBOutlet UIButton *buttonUser;
-@property (nonatomic, retain) IBOutlet UIButton *buttonLike;
-@property (nonatomic, retain) IBOutlet UIButton *buttonReplurk;
-@property (nonatomic, retain) IBOutlet UIButton *buttonPromote;
 @property (nonatomic, retain) IBOutlet UIButton *buttonMute;
 
 @property (nonatomic, assign) CGRect frame;
-@property (nonatomic, assign) id<PopupDelegate> delegate;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil;
 
-- (IBAction)userTapped:(id)sender;
-- (IBAction)likeTapped:(id)sender;
-- (IBAction)replurkTapped:(id)sender;
-- (IBAction)promoteTapped:(id)sender;
 - (IBAction)muteTapped:(id)sender;
 
 - (void)updateView;
+- (void)buttonTouched:(UIControl *)sender;
 
 @end

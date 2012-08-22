@@ -69,13 +69,13 @@ static CacheProvider *m_sharedInstance;
 - (PlurkData *)getPlurkById:(NSString *)plurkId
 {
 	PlurkData *plurk = [m_plurks objectForKey:plurkId];
-	if (plurkId == nil) {
+	if (plurk == nil) {
 		[m_parameters removeAllObjects];
 		NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
 		NSNumber *timestampObject = [NSNumber numberWithDouble:timestamp];
 		NSString *timestampString = [NSString stringWithFormat:@"%d",[timestampObject intValue]];
 		srand (time(NULL));
-		NSString *onceString = [NSString stringWithFormat:@"%d",rand()%1000000000];
+		NSString *onceString = [NSString stringWithFormat:@"%d",arc4random()%1000000000];
 		[m_parameters setValue:onceString forKey:_oauth_nonce];
 		[m_parameters setValue:timestampString forKey:_oauth_timestamp];
 		[m_parameters setValue:APPKEY forKey:_oauth_consumer_key];
@@ -105,7 +105,7 @@ static CacheProvider *m_sharedInstance;
 		NSNumber *timestampObject = [NSNumber numberWithDouble:timestamp];
 		NSString *timestampString = [NSString stringWithFormat:@"%d",[timestampObject intValue]];
 		srand (time(NULL));
-		NSString *onceString = [NSString stringWithFormat:@"%d",rand()%1000000000];
+		NSString *onceString = [NSString stringWithFormat:@"%d",arc4random()%1000000000];
 		[m_parameters setValue:onceString forKey:_oauth_nonce];
 		[m_parameters setValue:timestampString forKey:_oauth_timestamp];
 		[m_parameters setValue:APPKEY forKey:_oauth_consumer_key];
