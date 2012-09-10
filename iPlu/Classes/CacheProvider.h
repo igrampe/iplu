@@ -32,6 +32,7 @@
 
 - (PlurkData *)getPlurkById:(NSString *)plurkId;
 - (void)addPlurk:(PlurkData *)plurk byId:(NSString *)plurkId;
+- (void)updateResponses:(NSArray *)plurksId;
 
 - (UserData *)getUserById:(NSString *)userId;
 - (void)addUser:(UserData *)user byId:(NSString *)userId;
@@ -40,5 +41,7 @@
 - (void)addImage:(UIImage *)image byLink:(NSString *)link;
 - (UIImage *)getImageByUserId:(NSString *)userId;
 - (UIImage *)getImageByUser:(UserData *)user;
+
+
 
 @end

@@ -11,6 +11,32 @@
 
 #define AvatarServer @"http://avatars.plurk.com/"
 
+@implementation CacheProvider (Private)
+
+- (void)getResponses:(NSString *)plurkId fromResponse:(NSString *)fromResponse
+{
+	NSMutableDictionary *parameters = [[NSMutableDictionary new] autorelease];
+	NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
+	NSNumber *timestampObject = [NSNumber numberWithDouble:timestamp];
+	NSString *timestampString = [NSString stringWithFormat:@"%d",[timestampObject intValue]];
+	srand (time(NULL));
+	NSString *onceString = [NSString stringWithFormat:@"%d",arc4random()%1000000000];
+	[parameters setValue:onceString forKey:_oauth_nonce];
+	[parameters setValue:timestampString forKey:_oauth_timestamp];
+	[parameters setValue:APPKEY forKey:_oauth_consumer_key];
+	[parameters setValue:_HMAC_SHA1 forKey:_oauth_signature_method];
+	[parameters setValue:@"1.0" forKey:_oauth_version];
+	[parameters setValue:[[PlurkConnector sharedInstance] tokenKey] forKey:_oauth_token];
+	[parameters setValue:plurkId forKey:_plurk_id];
+	if (fromResponse) {
+		[parameters setValue:fromResponse forKey:_fromResponse];
+	}
+	PlurkCommand *command = [[PlurkCommand alloc] initWithString:APP_Responses_get];
+	[[PlurkConnector sharedInstance] plurkCommand:command withParameters:parameters delegate:self];
+}
+
+@end
+
 @implementation CacheProvider
 
 @synthesize delegate = m_delegate;
@@ -54,6 +80,9 @@ static CacheProvider *m_sharedInstance;
 		[self addUser:user byId:[user.userId stringValue]];
 		[m_delegate cacheUpdatedWithObject:user];
 	}
+	if ([command.command isEqualToString:APP_Responses_get]) {
+		
+	}
 }
 
 - (void)plurkCommandFailed:(PlurkCommand *)command withErrorCode:(ErrorCode)code
@@ -91,6 +120,13 @@ static CacheProvider *m_sharedInstance;
 - (void)addPlurk:(PlurkData *)plurk byId:(NSString *)plurkId
 {
 	[m_plurks setValue:plurk forKey:plurkId];
+}
+
+- (void)updateResponses:(NSArray *)plurksId
+{
+	for (NSString *i in plurksId) {
+		[self getResponses:i fromResponse:nil];
+	}
 }
 
 #pragma mark -- Users
@@ -170,7 +206,7 @@ static CacheProvider *m_sharedInstance;
 
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image forURL:(NSURL *)url
 {
-	[m_delegate cacheUpdated];
+	[m_delegate cacheUpdatedWithObject:image];
 }
 
 @end

@@ -28,7 +28,7 @@ CacheDelegate,
 PlurkConnectorDelegate>{
 
 	NSMutableArray *m_plurks;
-	NSMutableArray *m_plurksIds;
+	NSMutableArray *m_plurksId;
 	NSMutableDictionary *m_users;
 	MBProgressHUD *HUD;
 	ODRefreshControl *m_refreshControl;

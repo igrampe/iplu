@@ -25,7 +25,7 @@
         [[PlurkConnector sharedInstance] setTokenKey:[AppSettingsHelper getAccessTokenKey]];
 		[[PlurkConnector sharedInstance] setTokenSecret:[AppSettingsHelper getAccessTokenSecret]];
 		m_plurks = [NSMutableArray new];
-		m_plurksIds = [NSMutableArray new];
+		m_plurksId = [NSMutableArray new];
 		m_users = [NSMutableDictionary new];
 		m_plurkPopup = [[Popup alloc] initWithNibName:@"HorizontalPopup"];
 		
@@ -269,6 +269,7 @@
 	[m_refreshControl endRefreshing];
 	[m_pullToRefreshManager tableViewReloadFinished];
 	[self getOwnProfile];
+	[[CacheProvider sharedInstance] performSelectorInBackground:@selector(updateResponses:) withObject:m_plurksId];
 }
 
 - (void)getOwnProfile
@@ -425,11 +426,11 @@
 		NSArray *plurks = [(NSDictionary *)result objectForKey:@"plurks"];
 		for (NSDictionary *i in plurks) {
 			NSString *plurkId = [i objectForKey:@"plurk_id"];
-			if ([m_plurksIds indexOfObject:plurkId] == NSNotFound) {
+			if ([m_plurksId indexOfObject:plurkId] == NSNotFound) {
 				PlurkData *plurk = [[PlurkData alloc] initWithDict:i];
 				[[CacheProvider sharedInstance] addPlurk:plurk byId:plurk.plurkId];
 				[m_plurks addObject:plurk];
-				[m_plurksIds addObject:plurkId];
+				[m_plurksId addObject:plurkId];
 			}
 		}
 		NSSortDescriptor *sortOrder = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending: NO];
