@@ -25,6 +25,7 @@
         [[PlurkConnector sharedInstance] setTokenKey:[AppSettingsHelper getAccessTokenKey]];
 		[[PlurkConnector sharedInstance] setTokenSecret:[AppSettingsHelper getAccessTokenSecret]];
 		m_plurks = [NSMutableArray new];
+		m_plurksIds = [NSMutableArray new];
 		m_users = [NSMutableDictionary new];
 		m_plurkPopup = [[Popup alloc] initWithNibName:@"HorizontalPopup"];
 		
@@ -247,13 +248,16 @@
 
 #pragma mark - CacheProvider Delegate
 
-- (void)cacheUpdated
+- (void)cacheUpdatedWithObject:(NSObject *)object
 {
 	[self.timelineView reloadData];
 	if (m_ownerProfile) {
 		m_menuButton.image = [[CacheProvider sharedInstance] getImageByUser:m_ownerProfile];
 	}
-	
+	NSLog(@"class: %@",[object class]);
+	if ([object isKindOfClass:[PlurkData class]]) {
+		[self getResponses:((PlurkData *)object).plurkId fromResponse:nil];
+	}
 }
 
 #pragma mark - Timeline Actions
@@ -265,9 +269,6 @@
 	[m_refreshControl endRefreshing];
 	[m_pullToRefreshManager tableViewReloadFinished];
 	[self getOwnProfile];
-	for (PlurkData *i in m_plurks) {
-		[self getResponses:i.plurkId fromResponse:nil];
-	}
 }
 
 - (void)getOwnProfile
@@ -424,11 +425,11 @@
 		NSArray *plurks = [(NSDictionary *)result objectForKey:@"plurks"];
 		for (NSDictionary *i in plurks) {
 			NSString *plurkId = [i objectForKey:@"plurk_id"];
-			PlurkData *plurk = [[CacheProvider sharedInstance] getPlurkById:plurkId];
-			if (!plurk) {
-				plurk = [[PlurkData alloc] initWithDict:i];
+			if ([m_plurksIds indexOfObject:plurkId] == NSNotFound) {
+				PlurkData *plurk = [[PlurkData alloc] initWithDict:i];
 				[[CacheProvider sharedInstance] addPlurk:plurk byId:plurk.plurkId];
 				[m_plurks addObject:plurk];
+				[m_plurksIds addObject:plurkId];
 			}
 		}
 		NSSortDescriptor *sortOrder = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending: NO];

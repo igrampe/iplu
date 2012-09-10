@@ -15,7 +15,7 @@
 
 @protocol CacheDelegate <NSObject>
 
-- (void)cacheUpdated;
+- (void)cacheUpdatedWithObject:(NSObject *)object;
 
 @end
 

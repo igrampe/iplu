@@ -47,14 +47,13 @@ static CacheProvider *m_sharedInstance;
 	if ([command.command isEqualToString:APP_Timeline_getPlurk]) {
 		PlurkData *plurk = [[PlurkData alloc] initWithDict:[result objectForKey:@"plurk"]];
 		[self addPlurk:plurk byId:plurk.plurkId];
-		[m_delegate cacheUpdated];
+		[m_delegate cacheUpdatedWithObject:plurk];
 	}
 	if ([command.command isEqualToString:APP_Profile_getPublicProfile]) {
 		UserData *user = [[UserData alloc] initWithDict:[result objectForKey:@"user_info"]];
 		[self addUser:user byId:[user.userId stringValue]];
-		[m_delegate cacheUpdated];
+		[m_delegate cacheUpdatedWithObject:user];
 	}
-
 }
 
 - (void)plurkCommandFailed:(PlurkCommand *)command withErrorCode:(ErrorCode)code
