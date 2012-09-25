@@ -132,7 +132,6 @@
 		[cell hidePopup:NO];
 	}
 	cell.delegate = self;
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	cell.plurk = [m_plurks objectAtIndex:indexPath.row];
 	cell.name.text = [[m_users objectForKey:[cell.plurk.ownerId stringValue]] displayName];
 	[cell.avatar setImage:[[CacheProvider sharedInstance] getImageByUserId:[cell.plurk.ownerId stringValue]]];

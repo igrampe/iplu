@@ -47,7 +47,7 @@
 			[self.avatar.layer setMasksToBounds:YES];
 			[self.avatar.layer setBorderColor:[UIColor grayColor].CGColor];
 			[self.avatar.layer setBorderWidth:1];
-			[self.avatar.layer setCornerRadius:25.0];
+			[self.avatar.layer setCornerRadius:30.0];
 			
 			[self.qualifier.layer setCornerRadius:10];
 			
@@ -92,12 +92,12 @@
 		[self.cellView insertSubview:avatar aboveSubview:popup.view];
 		[UIView beginAnimations:nil context:nil];
 		[UIView setAnimationDuration:0.5];
-		popup.frame = CGRectMake(self.avatar.frame.origin.x, self.avatar.frame.origin.x, 300, 50);
+		popup.frame = CGRectMake(self.avatar.frame.origin.x, self.avatar.frame.origin.x, 300, 60);
 		[UIView commitAnimations];
 	} else {
 		[self.cellView addSubview:popup.view];
 		[self.cellView insertSubview:avatar aboveSubview:popup.view];
-		popup.frame = CGRectMake(self.avatar.frame.origin.x, self.avatar.frame.origin.x, 300, 50);
+		popup.frame = CGRectMake(self.avatar.frame.origin.x, self.avatar.frame.origin.x, 300, 60);
 	}
 	isPopup = YES;
 }
@@ -127,7 +127,6 @@
 	NSString *qualifierTranslated = self.plurk.qualifierTranslated;
 	NSString *qualifierString = self.plurk.qualifier;
 	
-	
 	if ([qualifierTranslated isEqualToString:@""]) {
 		self.qualifier.hidden = YES;
 	} else {
@@ -156,8 +155,6 @@
 																 alpha:0.75];
 		}
 	}
-	
-	
 }
 
 #pragma mark - Popup Delegate

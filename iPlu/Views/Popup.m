@@ -27,9 +27,9 @@
 		m_buttons = [NSMutableArray new];
 		if (orientation == kPopupHorizontalOrientation) {
 			m_width = 300;
-			m_height = 50;
+			m_height = 60;
 		} else {
-			m_width = 50;
+			m_width = 60;
 			m_height = 300;
 		}
 	}
@@ -53,7 +53,7 @@
                                         options:nil];
             NSAssert(self.view != nil, @"NIB file loaded but content property not set.");
 			[m_view.layer setMasksToBounds:YES];
-			[m_view.layer setCornerRadius:25];
+			[m_view.layer setCornerRadius:30];
         }
     }
     return self;

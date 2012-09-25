@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">11E53</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2829</string>
-		<string key="IBDocument.AppKitVersion">1138.47</string>
+		<string key="IBDocument.SystemVersion">11G56</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.AppKitVersion">1138.51</string>
 		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1914</string>
+			<string key="NS.object.0">1926</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -38,7 +38,7 @@
 					<object class="IBUIButton" id="306134268">
 						<reference key="NSNextResponder" ref="821128908"/>
 						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{53, 3}, {44, 44}}</string>
+						<string key="NSFrame">{{53, 8}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="821128908"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="980635846"/>
@@ -77,7 +77,7 @@
 					<object class="IBUIButton" id="980635846">
 						<reference key="NSNextResponder" ref="821128908"/>
 						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{100, 3}, {44, 44}}</string>
+						<string key="NSFrame">{{100, 8}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="821128908"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="391881691"/>
@@ -100,7 +100,7 @@
 					<object class="IBUIButton" id="391881691">
 						<reference key="NSNextResponder" ref="821128908"/>
 						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{147, 3}, {44, 44}}</string>
+						<string key="NSFrame">{{147, 8}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="821128908"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="739293861"/>
@@ -123,7 +123,7 @@
 					<object class="IBUIButton" id="739293861">
 						<reference key="NSNextResponder" ref="821128908"/>
 						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{194, 3}, {44, 44}}</string>
+						<string key="NSFrame">{{194, 8}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="821128908"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="345909829"/>
@@ -146,9 +146,10 @@
 					<object class="IBUIButton" id="345909829">
 						<reference key="NSNextResponder" ref="821128908"/>
 						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{241, 3}, {44, 44}}</string>
+						<string key="NSFrame">{{241, 8}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="821128908"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -174,7 +175,7 @@
 						<reference key="IBUIFont" ref="370377403"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{300, 50}</string>
+				<string key="NSFrameSize">{300, 60}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="306134268"/>
@@ -290,69 +291,31 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">13</int>
+			<int key="maxID">14</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">Popup</string>
 					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="likeTapped:">id</string>
-						<string key="muteTapped:">id</string>
-						<string key="promoteTapped:">id</string>
-						<string key="replurkTapped:">id</string>
-						<string key="userTapped:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="likeTapped:">
-							<string key="name">likeTapped:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="muteTapped:">
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">muteTapped:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">muteTapped:</string>
+						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">muteTapped:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="promoteTapped:">
-							<string key="name">promoteTapped:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="replurkTapped:">
-							<string key="name">replurkTapped:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="userTapped:">
-							<string key="name">userTapped:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="buttonLike">UIButton</string>
 						<string key="buttonMute">UIButton</string>
-						<string key="buttonPromote">UIButton</string>
-						<string key="buttonReplurk">UIButton</string>
-						<string key="buttonUser">UIButton</string>
 						<string key="view">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="buttonLike">
-							<string key="name">buttonLike</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="buttonMute">
 							<string key="name">buttonMute</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="buttonPromote">
-							<string key="name">buttonPromote</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="buttonReplurk">
-							<string key="name">buttonReplurk</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="buttonUser">
-							<string key="name">buttonUser</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="view">
@@ -376,6 +339,6 @@
 			<string key="mute.png">{88, 88}</string>
 			<string key="unmute.png">{88, 88}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1914</string>
+		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
 </archive>
